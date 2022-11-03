@@ -18,7 +18,7 @@ export default function Nav() {
               <Link href="/">Learn</Link>
             </li>
             <li className="ml-10 text-sm uppercase hover:border-b flex items-center">
-              <Link href="/#about">About</Link>
+              <Link href="/about">About</Link>
             </li>
             <li className="ml-10 text-sm uppercase hover:border-b">
               <Link href="/#skills">Community</Link>
