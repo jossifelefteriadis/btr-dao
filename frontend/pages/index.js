@@ -1,9 +1,7 @@
 import Head from "next/head";
 import Main from "../components/main";
-// import About from "../components/about";
 import Description from "../components/description";
 
-import BackgroundImage from "../public/assets/background.jpg";
 
 export default function Home() {
   return (
