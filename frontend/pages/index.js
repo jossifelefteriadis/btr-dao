@@ -14,6 +14,9 @@ export default function Home() {
       <p>Testimonial section</p>
       {/* https://www.covalenthq.com/about/careers/?jobId=Ryk1E03-txRV */}
       <p>Add core value</p>
+      <p>Ownership</p>
+      <p>Educational</p>
+      <p>Urgency</p>
     </section>
   );
 }
