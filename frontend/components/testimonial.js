@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Testimonial() {
   return (
-    <section class="bg-white">
+    <section class="bg-white h-96 flex items-center">
       <section class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
         <figure class="max-w-screen-md mx-auto">
           <svg
@@ -18,8 +18,8 @@ export default function Testimonial() {
           </svg>
           <blockquote>
             <p class="text-2xl font-medium text-gray-900">
-              BTR is just awesome. It is an amazing community with great people
-              sharing knowledge. Come join us and you will learn a ton.
+              "BTR is just awesome. It is an amazing community with great people
+              sharing knowledge. Come join us and you will learn a ton."
             </p>
           </blockquote>
           <figcaption class="flex items-center justify-center mt-6 space-x-3">
