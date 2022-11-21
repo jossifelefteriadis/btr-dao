@@ -2,11 +2,11 @@ import React from "react";
 
 export default function Testimonial() {
   return (
-    <section class="bg-white h-96 flex items-center">
-      <section class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
-        <figure class="max-w-screen-md mx-auto">
+    <section className="bg-white h-96 flex items-center ">
+      <section className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
+        <figure className="max-w-screen-md mx-auto">
           <svg
-            class="h-12 mx-auto mb-3 text-gray-400"
+            className="h-12 mx-auto mb-3 text-gray-400"
             viewBox="0 0 24 27"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -17,16 +17,18 @@ export default function Testimonial() {
             />
           </svg>
           <blockquote>
-            <p class="text-2xl font-medium text-gray-900">
+            <p className="text-2xl font-medium text-gray-900">
               "BTR is just awesome. It is an amazing community with great people
               sharing knowledge. Come join us and you will learn a ton."
             </p>
           </blockquote>
-          <figcaption class="flex items-center justify-center mt-6 space-x-3">
-            {/* <img class="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture"> */}
-            <section class="flex items-center sectionide-x-2 sectionide-gray-500">
-              <section class="pr-3 font-medium text-gray-900">Sparks</section>
-              <section class="pl-3 text-sm font-light text-gray-700">
+          <figcaption className="flex items-center justify-center mt-6 space-x-3">
+            {/* <img className="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture"> */}
+            <section className="flex items-center sectionide-x-2 sectionide-gray-500">
+              <section className="pr-3 font-medium text-gray-900">
+                Sparks
+              </section>
+              <section className="pl-3 text-sm font-light text-gray-700">
                 Community Woolf at BTR
               </section>
             </section>
