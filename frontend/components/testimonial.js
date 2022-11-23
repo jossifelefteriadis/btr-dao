@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Testimonial() {
   return (
-    <section className="bg-white h-96 flex items-center ">
+    <section className="bg-neutral-100 h-96 flex items-center ">
       <section className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
         <figure className="max-w-screen-md mx-auto">
           <svg
