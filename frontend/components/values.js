@@ -6,7 +6,7 @@ import Urgency from "../public/assets/icons/urgency.png";
 
 export default function Values() {
   return (
-    <section className="h-96">
+    <section className="h-full">
       <p className="text-4xl text-center py-10 text-pink-600 underline underline-offset-8">
         Our core values
       </p>
