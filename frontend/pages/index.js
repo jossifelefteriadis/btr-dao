@@ -3,6 +3,7 @@ import Main from "../components/main";
 import Description from "../components/description";
 import Testimonial from "../components/testimonial";
 import Values from "../components/values";
+import Footer from "../components/footer";
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
       <Description />
       <Testimonial />
       <Values />
-      {/* Footer */}
+      <Footer />
     </section>
   );
 }
