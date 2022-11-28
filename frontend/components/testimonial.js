@@ -18,18 +18,17 @@ export default function Testimonial() {
           </svg>
           <blockquote>
             <p className="text-2xl font-medium text-gray-900">
-              "BTR is just awesome. It is an amazing community with great people
-              sharing knowledge. Come join us and you will learn a ton."
+              "BTR is a community of individuals that support eachother every step in the journey, while making money together"
             </p>
           </blockquote>
           <figcaption className="flex items-center justify-center mt-6 space-x-3">
             {/* <img className="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture"> */}
             <section className="flex items-center sectionide-x-2 sectionide-gray-500">
               <section className="pr-3 font-medium text-gray-900">
-                Sparks
+                Destin
               </section>
               <section className="pl-3 text-sm font-light text-gray-700">
-                Community Woolf at BTR
+                Community member at BTR
               </section>
             </section>
           </figcaption>
