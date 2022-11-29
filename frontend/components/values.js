@@ -15,24 +15,26 @@ export default function Values() {
           <Image src={Ownership} alt="Proposal" width="110" height="110" />
           <p className="pt-2 text-2xl">Ownership</p>
           <p className="pt-4 w-2/3 text-lg text-center">
-            Lorem ipsum is placeholder text commonly used in the graphic, print,
-            and publishing industries for previewing layouts and visual mockups.
+            We expect every BTR member to care about the outcomes of their actions.
+            Therefore we take every detail into consideration and take ownership
+            in our decisions.
           </p>
         </section>
         <section className="flex flex-col items-center pb-10">
           <Image src={Educational} alt="Proposal" width="110" height="110" />
           <p className="pt-2 text-2xl">Educational</p>
           <p className="pt-4 w-2/3 text-lg text-center">
-            Lorem ipsum is placeholder text commonly used in the graphic, print,
-            and publishing industries for previewing layouts and visual mockups.
+            We are an educated community and we expect every community member to help
+            eachother with questions and taking learning seriously. The more knowledge
+            we have, the bigger achievements.
           </p>
         </section>
         <section className="flex flex-col items-center pb-10">
           <Image src={Urgency} alt="Proposal" width="110" height="110" />
           <p className="pt-2 text-2xl">Urgency</p>
           <p className="pt-4 w-2/3 text-lg text-center">
-            Lorem ipsum is placeholder text commonly used in the graphic, print,
-            and publishing industries for previewing layouts and visual mockups.
+            We work hard to be at the right place in the right time and therefore
+            strive to make quick changes towards the right directions.
           </p>
         </section>
       </section>
