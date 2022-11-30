@@ -1,4 +1,5 @@
 import Head from "next/head";
+import LearnComp from "../components/learn";
 
 export default function Learn() {
   return (
@@ -6,6 +7,7 @@ export default function Learn() {
       <Head>
         <title>Learn</title>
       </Head>
+      <LearnComp />
     </section>
   );
 }
