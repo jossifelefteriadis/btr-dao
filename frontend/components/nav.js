@@ -15,7 +15,7 @@ export default function Nav() {
         <section>
           <ul className="hidden md:flex items-center mr-4 text-[#ecf0f3]">
             <li className="ml-10 text-sm uppercase hover:border-b">
-              <Link href="/">Learn</Link>
+              <Link href="/learn">Learn</Link>
             </li>
             <li className="ml-10 text-sm uppercase hover:border-b flex items-center">
               <Link href="/about">About</Link>
