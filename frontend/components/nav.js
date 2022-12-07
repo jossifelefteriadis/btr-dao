@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-import Logo from "../public/assets/btr.jpg";
+import Logo from "../public/assets/btrLogo.png";
 
 export default function Nav() {
   return (
