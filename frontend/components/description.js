@@ -12,25 +12,6 @@ export default function Description() {
   return (
     <section className="w-full p-2 flex flex-col items-center py-16">
       <h1>A smarter DAO</h1>
-      {/* <section className="max-w-[1240px] m-auto md:grid grid-cols-2 gap-8">
-        <section className="flex flex-col justify-evenly items-center h-screen">
-          <section className="flex flex-col justify-center items-center">
-            <Image src={Proposal} alt="Proposal" width="110" height="110" />
-            <p className="pt-2">Proposal</p>
-          </section>
-          <section className="flex flex-col justify-center items-center">
-            <Image src={Yes} alt="Yes" width="110" height="110" />
-            <p className="pt-2">Yes</p>
-          </section>
-          <section className="flex flex-col justify-center items-center">
-            <Image src={No} alt="No" width="110" height="110" />
-            <p className="pt-2">No</p>
-          </section>
-        </section>
-        <section className="flex justify-center items-center">
-          <Image src={Dao} alt="Dao image" width="350" height="350" />
-          </section>
-        </section> */}
       <section className="max-w-[1240px] m-auto md:grid grid-cols-2 gap-8 items-center mt-10">
         <section>
           <Image
