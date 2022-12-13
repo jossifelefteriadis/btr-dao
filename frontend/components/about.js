@@ -8,27 +8,36 @@ export default function About() {
       <section className="max-w-[1240px] m-auto md:grid grid-cols-2 gap-8 items-center mt-14 mb-20">
         <section>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            The BTR DAO is an investment club created to help the BTR community
+            members share in different investment opportunities they couldn't
+            otherwise take part in. It’s a collective effort to find
+            opportunities and pool our money together for future benefits based
+            on a NFT voting system. This can create residual income for all
+            members who partake in this DAO.
           </p>
           <br />
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            The BTR community was started in 2019. I (Brando) saw a void of
+            trustworthy crypto influencers who gave real value. Feeling like God
+            led me to this opportunity, I vowed to be used as a vessel and a
+            guide to those who would need proper navigation of the crypto wild
+            west. A viewer left a comment/compliment on a video saying they
+            would pay a monthly subscription for two deep dive videos a month. A
+            Patreon group was formed, and members who resonated with the
+            material and mission started to pile in. The same energy and mission
+            have continued even now in 2023.
           </p>
         </section>
         <section>
-          <p>some text</p>
+          <p>
+            The Bigger Than Race “BTR” community comprises people from all walks
+            of life. We share a common goal of achieving success, breaking
+            generational curses and shifting our perspectives to become better
+            investors and people through blockchain technology. Spirituality is
+            at the forefront of everything we do, which helps guide the
+            community members in the best infrastructure assets to own for the
+            Fourth Industrial Revolution.
+          </p>
         </section>
       </section>
       <VideoTestimonial />
