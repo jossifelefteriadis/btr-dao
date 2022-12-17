@@ -1,11 +1,6 @@
 import React from "react";
 import Image from "next/image";
 
-import Dao from "../public/assets/icons/dao.png";
-import No from "../public/assets/icons/no.png";
-import Yes from "../public/assets/icons/yes.png";
-import Proposal from "../public/assets/icons/proposal.png";
-import Treasury from "../public/assets/icons/treasury.png";
 import DescriptionImg from "../public/assets/icons/description.png";
 
 export default function Description() {
@@ -55,18 +50,6 @@ export default function Description() {
             things within blockchain which leads to a diverse community across
             multiple levels.
           </p>
-          {/* <p>
-            When proposals are submitted for voting, they go through Brando and
-            SparksFlames first. In order for a proposal to reach the DAO
-            community for voting, both Brando and SparksFlames need to approve
-            it.
-            <br />
-            <br />
-            This is in order to prevent spam. If the community has shown
-            interest in specific proposals or present something that isn't spam,
-            nor Brando or SparksFlames have the intentions to prevent the DAO to
-            vote on it.
-          </p> */}
         </section>
       </section>
     </section>
