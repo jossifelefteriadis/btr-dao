@@ -9,11 +9,11 @@ export default function About() {
         <section>
           <p>
             The BTR DAO is an investment club created to help the BTR community
-            members share in different investment opportunities they couldn't
-            otherwise take part in. It&apos;s a collective effort to find
-            opportunities and pool our money together for future benefits based
-            on a NFT voting system. This can create residual income for all
-            members who partake in this DAO.
+            members share in different investment opportunities they
+            couldn&apos;t otherwise take part in. It&apos;s a collective effort
+            to find opportunities and pool our money together for future
+            benefits based on a NFT voting system. This can create residual
+            income for all members who partake in this DAO.
           </p>
           <br />
           <p>
