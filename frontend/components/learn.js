@@ -3,7 +3,7 @@ import React from "react";
 export default function Learn() {
   return (
     <section className="w-full md:h-screen p-2 flex flex-col items-center py-16">
-      <section className="max-w-[1040px] m-auto text-xl bg-neutral-100">
+      <section className="max-w-[1040px] m-auto text-xl">
         <p>
           We're glad you found this section and want to learn more about the BTR
           DAO.
