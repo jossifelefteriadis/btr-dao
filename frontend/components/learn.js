@@ -94,16 +94,8 @@ export default function Learn() {
                     provided by the members and by the creators.
                   </p>
                   <p className="text-gray-500 dark:text-gray-400">
-                    Feel free to{" "}
-                    <a
-                      href="#"
-                      className="font-medium underline text-primary-600 dark:text-primary-500 hover:no-underline"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      contact us
-                    </a>{" "}
-                    and we&apos;ll help you out as soon as we can.
+                    Feel free to use the Telegram group for all questions, or
+                    the contact form of this website.
                   </p>
                 </section>
                 <section className="mb-10">
