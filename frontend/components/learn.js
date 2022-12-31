@@ -159,7 +159,7 @@ export default function Learn() {
                         clip-rule="evenodd"
                       ></path>
                     </svg>
-                    How will the DAO investor communicate?
+                    How will the DAO investors communicate?
                   </h3>
                   <p className="text-gray-500 dark:text-gray-400">
                     All communication is to be made via the Telegram group that
