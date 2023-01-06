@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import arrow from "../public/assets/icons/next.png";
 
 export default function Community() {
@@ -22,7 +23,11 @@ export default function Community() {
           <Image src={arrow} alt="arrow" width="25" height="25" />
         </section>
         <section className="h-24 flex items-center justify-between p-6 col-start-8 col-span-4 border-2 rounded border-gray-900 text-gray-900">
-          <p>Link to website</p>
+          <p>
+            <Link href="https://biggerthanrace.com/" target="_blank">
+              Link to website
+            </Link>
+          </p>
           <Image src={arrow} alt="arrow" width="25" height="25" />
         </section>
         <section className="h-24 flex items-center justify-between p-6 col-start-2 col-span-4 border-2 rounded border-gray-900 text-gray-900">
