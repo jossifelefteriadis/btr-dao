@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Learn() {
   return (
-    <section className="w-full md:h-screen p-2 flex flex-col items-center py-28">
+    <section className="w-full p-2 flex flex-col items-center py-28">
       <section className="max-w-[1040px] m-auto text-xl">
         <p>
           We&apos;re glad you found this section and want to learn more about
