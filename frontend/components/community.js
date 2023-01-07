@@ -13,7 +13,7 @@ export default function Community() {
         <Link
           href="https://www.youtube.com/c/BiggerThanRace"
           target="_blank"
-          className="h-24 flex items-center p-6 col-start-2 col-span-4 border-2 rounded border-gray-700 text-gray-900 hover:shadow-lg"
+          className="h-24 flex items-center p-6 col-start-2 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:shadow-lg"
         >
           <section className="w-full flex items-center justify-between">
             <p>Link to youtube</p>
@@ -23,7 +23,7 @@ export default function Community() {
         <Link
           href="https://www.youtube.com/c/BiggerThanRace"
           target="_blank"
-          className="h-24 flex items-center p-6 col-start-8 col-span-4 border-2 rounded border-gray-700 text-gray-900 hover:bg-neutral-50"
+          className="h-24 flex items-center p-6 col-start-7 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:bg-neutral-50"
         >
           <section className="w-full flex items-center justify-between">
             <p>Link to blog</p>
@@ -33,7 +33,7 @@ export default function Community() {
         <Link
           href="https://www.youtube.com/c/BiggerThanRace"
           target="_blank"
-          className="h-24 flex items-center p-6 col-start-2 col-span-4 border-2 rounded border-gray-700 text-gray-900 hover:shadow-lg"
+          className="h-24 flex items-center p-6 col-start-2 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:shadow-lg"
         >
           <section className="w-full flex items-center justify-between">
             <p>Link to telegram</p>
@@ -43,7 +43,7 @@ export default function Community() {
         <Link
           href="https://biggerthanrace.com/"
           target="_blank"
-          className="h-24 flex items-center p-6 col-start-8 col-span-4 border-2 rounded border-gray-700 text-gray-900 hover:bg-neutral-50"
+          className="h-24 flex items-center p-6 col-start-7 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:bg-neutral-50"
         >
           <section className="w-full flex items-center justify-between">
             <p>Link to website</p>
@@ -53,7 +53,7 @@ export default function Community() {
         <Link
           href="https://www.youtube.com/c/BiggerThanRace"
           target="_blank"
-          className="h-24 flex items-center p-6 col-start-2 col-span-4 border-2 rounded border-gray-700 text-gray-900 hover:shadow-lg"
+          className="h-24 flex items-center p-6 col-start-2 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:shadow-lg"
         >
           <section className="w-full flex items-center justify-between">
             <p>Resources/Guides</p>
