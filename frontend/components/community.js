@@ -23,7 +23,7 @@ export default function Community() {
         <Link
           href="https://www.youtube.com/c/BiggerThanRace"
           target="_blank"
-          className="h-24 flex items-center p-6 col-start-8 col-span-4 border-2 rounded border-gray-700 text-gray-900 hover:shadow-lg"
+          className="h-24 flex items-center p-6 col-start-8 col-span-4 border-2 rounded border-gray-700 text-gray-900 hover:bg-neutral-50"
         >
           <section className="w-full flex items-center justify-between">
             <p>Link to blog</p>
@@ -50,10 +50,16 @@ export default function Community() {
             <Image src={arrow} alt="arrow" width="25" height="25" />
           </section>
         </Link>
-        <section className="h-24 flex items-center justify-between p-6 col-start-2 col-span-4 border-2 rounded border-gray-900 text-gray-900">
-          <p>Resources/Guides</p>
-          <Image src={arrow} alt="arrow" width="25" height="25" />
-        </section>
+        <Link
+          href="https://www.youtube.com/c/BiggerThanRace"
+          target="_blank"
+          className="h-24 flex items-center p-6 col-start-2 col-span-4 border-2 rounded border-gray-700 text-gray-900 hover:shadow-lg"
+        >
+          <section className="w-full flex items-center justify-between">
+            <p>Resources/Guides</p>
+            <Image src={arrow} alt="arrow" width="25" height="25" />
+          </section>
+        </Link>
       </section>
     </section>
   );
