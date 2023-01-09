@@ -1,7 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+
 import arrow from "../public/assets/icons/next.png";
+import youtube from "../public/assets/icons/youtube.png";
+import blog from "../public/assets/icons/blog.png";
+import website from "../public/assets/icons/code.png";
+import telegram from "../public/assets/icons/telegram.png";
+import resources from "../public/assets/icons/more.png";
 
 export default function Community() {
   return (
@@ -16,17 +22,35 @@ export default function Community() {
           className="h-24 flex items-center p-6 col-start-2 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:shadow-lg"
         >
           <section className="w-full flex items-center justify-between">
-            <p>Link to youtube</p>
+            <section className="flex items-center">
+              <Image
+                src={youtube}
+                alt="youtube"
+                width="35"
+                height="35"
+                className="mr-4"
+              />
+              <p>Link to youtube</p>
+            </section>
             <Image src={arrow} alt="arrow" width="25" height="25" />
           </section>
         </Link>
         <Link
-          href="https://www.youtube.com/c/BiggerThanRace"
+          href="https://www.youtube.com/c/BiggerThanRaceZ"
           target="_blank"
           className="h-24 flex items-center p-6 col-start-7 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:bg-neutral-50"
         >
           <section className="w-full flex items-center justify-between">
-            <p>Link to blog</p>
+            <section className="flex items-center">
+              <Image
+                src={blog}
+                alt="blog"
+                width="35"
+                height="35"
+                className="mr-4"
+              />
+              <p>Link to blog</p>
+            </section>
             <Image src={arrow} alt="arrow" width="25" height="25" />
           </section>
         </Link>
@@ -36,7 +60,16 @@ export default function Community() {
           className="h-24 flex items-center p-6 col-start-2 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:shadow-lg"
         >
           <section className="w-full flex items-center justify-between">
-            <p>Link to telegram</p>
+            <section className="flex items-center">
+              <Image
+                src={telegram}
+                alt="telegram"
+                width="35"
+                height="35"
+                className="mr-4"
+              />
+              <p>Link to telegram</p>
+            </section>
             <Image src={arrow} alt="arrow" width="25" height="25" />
           </section>
         </Link>
@@ -46,7 +79,16 @@ export default function Community() {
           className="h-24 flex items-center p-6 col-start-7 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:bg-neutral-50"
         >
           <section className="w-full flex items-center justify-between">
-            <p>Link to website</p>
+            <section className="flex items-center">
+              <Image
+                src={website}
+                alt="website"
+                width="35"
+                height="35"
+                className="mr-4"
+              />
+              <p>Link to website</p>
+            </section>
             <Image src={arrow} alt="arrow" width="25" height="25" />
           </section>
         </Link>
@@ -56,7 +98,16 @@ export default function Community() {
           className="h-24 flex items-center p-6 col-start-2 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:shadow-lg"
         >
           <section className="w-full flex items-center justify-between">
-            <p>Resources/Guides</p>
+            <section className="flex items-center">
+              <Image
+                src={resources}
+                alt="resources"
+                width="35"
+                height="35"
+                className="mr-4"
+              />
+              <p>Resources/Guides</p>
+            </section>
             <Image src={arrow} alt="arrow" width="25" height="25" />
           </section>
         </Link>
