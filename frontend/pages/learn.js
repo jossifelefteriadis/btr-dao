@@ -1,5 +1,6 @@
 import Head from "next/head";
 import LearnComp from "../components/learn";
+import Footer from "../components/footer";
 
 export default function Learn() {
   return (
@@ -8,6 +9,7 @@ export default function Learn() {
         <title>Learn</title>
       </Head>
       <LearnComp />
+      <Footer />
     </section>
   );
 }
