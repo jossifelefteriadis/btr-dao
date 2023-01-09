@@ -10,7 +10,7 @@ export default function Footer() {
         </p>
         <p> | </p>
         <p>
-          <Link href="/">FAQ</Link>
+          <Link href="/learn">FAQ</Link>
         </p>
         <p> | </p>
         <p>
