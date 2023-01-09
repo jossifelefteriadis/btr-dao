@@ -36,7 +36,7 @@ export default function Community() {
           </section>
         </Link>
         <Link
-          href="https://www.youtube.com/c/BiggerThanRaceZ"
+          href="https://biggerthanrace.com/blog"
           target="_blank"
           className="h-24 flex items-center p-6 col-start-7 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:bg-neutral-50"
         >
@@ -55,7 +55,7 @@ export default function Community() {
           </section>
         </Link>
         <Link
-          href="https://www.youtube.com/c/BiggerThanRace"
+          href="https://www.patreon.com/BiggerThanRace/"
           target="_blank"
           className="h-24 flex items-center p-6 col-start-2 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:shadow-lg"
         >
