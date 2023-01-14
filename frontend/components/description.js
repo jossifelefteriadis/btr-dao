@@ -24,7 +24,7 @@ export default function Description() {
               1. Everyone with a BTR NFT will be able to create a proposal
             </li>
             <li>
-              1. Everyone with a BTR NFT will be able to create a proposal
+              1. Everyone with a BTR NFT will be able to vote on a proposal
             </li>
             <li>
               3. If a proposal gets more than 51% yes-votes, the investment
