@@ -15,44 +15,20 @@ export default function JoinTheCommunity() {
         {/* <section className="max-w-[1240px] h-96 mx-auto p-2 flex flex-col justify-center items-center bg-white dark:bg-gray-900 text-gray-900 dark:text-white"> */}
         <p>Join the community section here</p>
         <section className="flex items-center justify-evenly w-4/6 pt-14">
-          <section className="flex flex-col items-center">
-            <Image
-              src={youtube}
-              alt="youtube"
-              width="35"
-              height="35"
-              className="mr-4"
-            />
+          <section className="flex flex-col items-center justify-evenly h-24">
+            <Image src={youtube} alt="youtube" width="35" height="35" />
             <p>Youtube</p>
           </section>
-          <section className="flex flex-col items-center">
-            <Image
-              src={blog}
-              alt="blog"
-              width="35"
-              height="35"
-              className="mr-4"
-            />
+          <section className="flex flex-col items-center justify-evenly h-24">
+            <Image src={blog} alt="blog" width="35" height="35" />
             <p>Blog</p>
           </section>
-          <section className="flex flex-col items-center">
-            <Image
-              src={telegram}
-              alt="telegram"
-              width="35"
-              height="35"
-              className="mr-4"
-            />
+          <section className="flex flex-col items-center justify-evenly h-24">
+            <Image src={telegram} alt="telegram" width="35" height="35" />
             <p>Telegram</p>
           </section>
-          <section className="flex flex-col items-center">
-            <Image
-              src={website}
-              alt="website"
-              width="35"
-              height="35"
-              className="mr-4"
-            />
+          <section className="flex flex-col items-center justify-evenly h-24">
+            <Image src={website} alt="website" width="35" height="35" />
             <p>Website</p>
           </section>
         </section>
