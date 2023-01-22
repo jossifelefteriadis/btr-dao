@@ -11,7 +11,7 @@ export default function JoinTheCommunity() {
   return (
     <section className="bg-neutral-100 py-20">
       {/* bg-[#f9fafb] */}
-      <section className="max-w-screen-xl bg-black mx-auto lg:py-16 lg:px-6 flex flex-col items-center">
+      <section className="max-w-screen-xl bg-black mx-auto lg:py-16 lg:px-6 flex flex-col items-center text-lg">
         {/* <section className="max-w-[1240px] h-96 mx-auto p-2 flex flex-col justify-center items-center bg-white dark:bg-gray-900 text-gray-900 dark:text-white"> */}
         <p>Join the community section here</p>
         <section className="flex items-center justify-evenly w-4/6 pt-14">
