@@ -6,8 +6,8 @@ import Urgency from "../public/assets/icons/urgency.png";
 
 export default function Values() {
   return (
-    <section className="pb-10">
-      <p className="text-4xl text-center py-10 text-pink-600 underline underline-offset-8">
+    <section className="pb-20">
+      <p className="text-4xl text-center py-14 pt-20 text-pink-600 underline underline-offset-8">
         Our core values
       </p>
       <section className="text-white pt-10 grid rid-cols-1 md:grid-cols-3 gap-3">
