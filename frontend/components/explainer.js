@@ -6,9 +6,6 @@ import VotingSquares from "../public/assets/icons/votingSquares.png";
 
 export default function Explainer() {
   return (
-    // <p>Have an NFT to create proposals - visa nft bild</p>
-    //   <p>Have an NFT to vote on proposals - visa nft bild</p>
-    //   <p>OVer 51% proposals - 6 rutor där 4 är gröna</p>
     <section className="pb-20">
       <section className="text-white pt-10 grid rid-cols-1 md:grid-cols-3 gap-3">
         <section className="flex flex-col items-center pb-10">
@@ -19,6 +16,7 @@ export default function Explainer() {
           </p>
         </section>
         <section className="flex flex-col items-center pb-10">
+          {/* Change image to an nft once we get the graphic */}
           <Image src={YesVote} alt="Yes Vote" width="110" height="110" />
           <p className="pt-2 text-2xl">Have an NFT to vote on proposals</p>
           <p className="pt-4 w-2/3 text-lg text-center">
