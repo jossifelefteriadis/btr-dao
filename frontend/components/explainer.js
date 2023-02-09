@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Proposal from "../public/assets/icons/proposal.png";
 import YesVote from "../public/assets/icons/yes.png";
-import NoVote from "../public/assets/icons/no.png";
+import VotingSquares from "../public/assets/icons/votingSquares.png";
 
 export default function Explainer() {
   return (
@@ -26,7 +26,7 @@ export default function Explainer() {
           </p>
         </section>
         <section className="flex flex-col items-center pb-10">
-          <Image src={NoVote} alt="No Vote" width="110" height="110" />
+          <Image src={VotingSquares} alt="No Vote" width="110" height="110" />
           <p className="pt-2 text-2xl">Over 51% proposals</p>
           <p className="pt-4 w-2/3 text-lg text-center">
             Complete transparency and community driven decisions on each
