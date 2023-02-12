@@ -24,7 +24,7 @@ export default function Nav() {
               <Link href="/community">Community</Link>
             </li>
             <li className="ml-10 text-sm uppercase hover:border-b">
-              <Link href="/#vote">Vote</Link>
+              <Link href="/vote">Vote</Link>
             </li>
             <li className="ml-10 text-sm uppercase">
               <ConnectButton />
