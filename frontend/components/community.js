@@ -113,6 +113,7 @@ export default function Community() {
           </section>
         </Link>
       </section>
+      <p>Add testimonial here</p>
     </section>
   );
 }
