@@ -19,6 +19,7 @@ contract BTRDAO {
     error MINIMUM_OF_15_VOTES();
     error NOT_ENOUGH_YES_VOTES();
     error HASNT_BEEN_30_DAYS();
+    error DEADLINE_PASSED();
 
     enum Vote {
     YES, 
@@ -38,7 +39,7 @@ contract BTRDAO {
 
     modifier doYouHoldBTRNFTS {
         if(IERC721(BTRNFTAddress).balanceOf(msg.sender) < 1) {
-           revert NFT_BALANCE_EMPTY();
+          revert NFT_BALANCE_EMPTY();
         }
         _;
     }
@@ -58,12 +59,21 @@ contract BTRDAO {
         _;
     }
 
+    modifier isProposalStillActive(uint index) {
+      BTRProposal storage selectedBTRProposal = btrProposals[index];
+      if(block.timestamp > selectedBTRProposal.proposalDeadline) {
+        revert DEADLINE_PASSED();
+      }
+      _;
+    }
+
      modifier canProposalBeAccepted(uint index) {
       BTRProposal storage selectedBTRProposal = btrProposals[index];
+      bool isSenderAnOwner = (msg.sender == owner || msg.sender == secondOwner);
         if(selectedBTRProposal.proposalOwner == address(0)) {
            revert PROPOSAL_DOESNT_EXIST();
         }
-        if(msg.sender != owner || msg.sender != secondOwner) {
+        if(isSenderAnOwner == false) {
           revert NOT_AN_OWNER();
         }
 
@@ -83,6 +93,8 @@ contract BTRDAO {
 
     modifier canProposalBeExecuted(uint index) {
        BTRProposal storage selectedBTRProposal = btrProposals[index];
+       bool isSenderAnOwner = (msg.sender == owner || msg.sender == secondOwner);
+       bool hasDeadlinePassed = (selectedBTRProposal.proposalDeadline > block.timestamp && selectedBTRProposal.totalVotes != 100);
        if(selectedBTRProposal.totalVotes < 15) {
          revert MINIMUM_OF_15_VOTES();
        } 
@@ -91,13 +103,14 @@ contract BTRDAO {
          revert NOT_ENOUGH_YES_VOTES();
        }
         
-        if(msg.sender != owner || msg.sender != secondOwner) {
+        if(isSenderAnOwner == false) {
           revert NOT_AN_OWNER();
         }
         
-        if(((block.timestamp + 30 days) < selectedBTRProposal.timeThatProposalWasCreated) && (selectedBTRProposal.totalVotes != 100)) {
+        if(hasDeadlinePassed) {
           revert HASNT_BEEN_30_DAYS();
         }  
+
        _;
     }
     
@@ -110,7 +123,7 @@ contract BTRDAO {
       uint votedYes;
       uint votedNo;
       uint totalVotes;
-      uint timeThatProposalWasCreated;
+      uint proposalDeadline;
       mapping(address => bool) votedAlready;
     }
     
@@ -132,13 +145,14 @@ contract BTRDAO {
        BTRProposal storage selectedBTRProposal = btrProposals[index];
        if(_acceptProposal == true) {
         selectedBTRProposal.proposalAccepted = true;
+        selectedBTRProposal.proposalDeadline = block.timestamp + 30 days;
        } else {
         selectedBTRProposal.proposalAccepted = false;
        }
        selectedBTRProposal.proposalAlreadyValidated = true;
     }
 
-    function voteOnProposal(Vote vote, uint index) external doYouHoldBTRNFTS haveYouVotedAlready(index) hasProposalBeenAccepted(index) {
+    function voteOnProposal(Vote vote, uint index) external doYouHoldBTRNFTS haveYouVotedAlready(index) hasProposalBeenAccepted(index) isProposalStillActive(index) {
       BTRProposal storage selectedBTRProposal = btrProposals[index];
       if(vote == Vote.YES) {
         selectedBTRProposal.votedYes++;
@@ -148,6 +162,7 @@ contract BTRDAO {
       selectedBTRProposal.totalVotes++;
       selectedBTRProposal.votedAlready[msg.sender] = true;
     }
+
    //Either anybody from the DAO can execute the proposal or only the owners of the DAO can execute the propoosal
     function executeProposal(uint index) external canProposalBeExecuted(index) {
        BTRProposal storage selectedBTRProposal = btrProposals[index];
@@ -162,10 +177,10 @@ contract BTRDAO {
       require(success, "TRANSFER_FAILED");
     }
 
-    function viewACreatedProposal(uint index) external view returns(string memory proposal, address proposalOwner, bool proposalAccepted, bool proposalAlreadyValidated, bool proposalExecuted, uint votedYes, uint votedNo, uint totalVotes, uint timeThatProposalWasCreated) {
+    function viewACreatedProposal(uint index) external view returns(string memory proposal, address proposalOwner, bool proposalAccepted, bool proposalAlreadyValidated, bool proposalExecuted, uint votedYes, uint votedNo, uint totalVotes, uint proposalDeadline) {
        BTRProposal storage selectedBTRProposal = btrProposals[index];
        (proposal) = abi.decode(selectedBTRProposal.proposal, (string));
-       return(proposal, selectedBTRProposal.proposalOwner, selectedBTRProposal.proposalAccepted, selectedBTRProposal.proposalAlreadyValidated, selectedBTRProposal.proposalExecuted, selectedBTRProposal.votedYes, selectedBTRProposal.votedNo, selectedBTRProposal.totalVotes, selectedBTRProposal.timeThatProposalWasCreated);
+       return(proposal, selectedBTRProposal.proposalOwner, selectedBTRProposal.proposalAccepted, selectedBTRProposal.proposalAlreadyValidated, selectedBTRProposal.proposalExecuted, selectedBTRProposal.votedYes, selectedBTRProposal.votedNo, selectedBTRProposal.totalVotes, selectedBTRProposal.proposalDeadline);
     }
 
     receive() external payable {}
