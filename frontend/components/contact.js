@@ -1,6 +1,10 @@
 import React, { useRef } from "react";
 
 export default function Contact() {
+  const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID;
+  const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID;
+  const PUBLIC_KEY = process.env.NEXT_PUBLIC_PUBLIC_KEY;
+
   return (
     <section className="w-full flex flex-col items-center pt-32 py-16 bg-white text-gray-900">
       <h1>Contact</h1>
