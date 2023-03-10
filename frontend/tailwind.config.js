@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        bgImage: "url('../public/assets/alley.webp')",
+        bgImage: "url('../public/assets/btrBackground.jpg')",
       },
     },
   },
