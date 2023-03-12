@@ -39,7 +39,7 @@ export default function Community() {
         <Link
           href="https://biggerthanrace.com/blog"
           target="_blank"
-          className="h-24 flex items-center p-6 col-start-7 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:bg-neutral-50"
+          className="h-24 flex items-center p-6 col-start-7 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:shadow-lg"
         >
           <section className="w-full flex items-center justify-between">
             <section className="flex items-center">
@@ -77,7 +77,7 @@ export default function Community() {
         <Link
           href="https://biggerthanrace.com/"
           target="_blank"
-          className="h-24 flex items-center p-6 col-start-7 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:bg-neutral-50"
+          className="h-24 flex items-center p-6 col-start-7 col-span-5 border-2 rounded border-gray-700 text-gray-900 hover:shadow-lg"
         >
           <section className="w-full flex items-center justify-between">
             <section className="flex items-center">
@@ -113,7 +113,6 @@ export default function Community() {
           </section>
         </Link>
       </section>
-      <p>Add testimonial here</p>
     </section>
   );
 }
