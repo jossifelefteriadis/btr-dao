@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         bgImage: "url('../public/assets/btrBackground.jpg')",
+        waves: "url(https://etherscan.io/images/svg/waves-light.svg)",
       },
     },
   },
