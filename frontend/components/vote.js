@@ -49,8 +49,21 @@ export default function Vote() {
           </section>
         </section>
       ) : (
-        <section>
-          <p>logged in</p>
+        <section className="flex justify-center pb-2 px-10 border-b border-gray-500">
+          <section className="w-1/3 flex content-center justify-evenly">
+            <p className="cursor-pointer hover:text-pink-600 text-lg">
+              <Link href="/#">Proposals</Link>
+            </p>
+            <p className="cursor-pointer hover:text-pink-600 text-lg">
+              <Link href="/#">Create Proposal</Link>
+            </p>
+            <p className="cursor-pointer hover:text-pink-600 text-lg">
+              <Link href="/#">Transparency</Link>
+            </p>
+            <p className="cursor-pointer hover:text-pink-600 text-lg">
+              <Link href="/#">Guide</Link>
+            </p>
+          </section>
         </section>
       )}
     </section>
