@@ -75,19 +75,17 @@ export default function Vote() {
                 9 active proposals
               </p>
             </section>
-            <section className="w-80 h-28 flex flex-col justify-evenly pl-4 pb-4 border rounded-md border-gray-200 text-gray-900 shadow-lg">
-              <p className="text-gray-600 text-lg">Participation</p>
-              <p className="text-lg font-semibold">862 votes this month</p>
+            <section className="w-80 h-28 bg-waves bg-blue-900 flex flex-col justify-evenly pl-4 pb-4 border rounded-md border-gray-200 text-gray-900 shadow-lg">
+              <p className="text-gray-100 text-lg">Participation</p>
+              <p className="text-white text-lg font-semibold">
+                862 votes this month
+              </p>
             </section>
-            <section className="w-80 h-28 flex flex-col justify-evenly pl-4 pb-4 border rounded-md border-gray-200 text-gray-900 shadow-lg">
-              <p className="text-gray-600 text-lg">Treasury</p>
-              <p className="text-lg font-semibold">$832,000</p>
+            <section className="w-80 h-28 bg-waves bg-blue-900 flex flex-col justify-evenly pl-4 pb-4 border rounded-md border-gray-200 text-gray-900 shadow-lg">
+              <p className="text-gray-100 text-lg">Treasury</p>
+              <p className="text-white text-lg font-semibold">$832,000</p>
             </section>
           </section>
-        </section>
-        <section>Create proposal</section>
-        <section>Transparency</section>
-        <section>Guide</section>
       </section>
     </section>
   );
