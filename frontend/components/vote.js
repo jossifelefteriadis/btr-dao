@@ -86,6 +86,69 @@ export default function Vote() {
               <p className="text-white text-lg font-semibold">$832,000</p>
             </section>
           </section>
+          <section className="w-full flex flex-col items-center justify-evenly mt-6 py-2">
+            <section className="flex flex-col justify-between w-4/5 h-24 my-2 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
+              <span className="text-slate-900 text-3xl font-semibold">
+                Invest in AGIX
+              </span>
+              <section className="flex justify-between text-sm">
+                <section>
+                  <span className="text-slate-400 mr-2">17 VOTES</span>
+                  <span className="text-slate-700">ENDS IN 23 DAYS</span>
+                </section>
+                <span className="text-slate-400">
+                  LEADING:{" "}
+                  <span className="text-slate-700 font-semibold">YES</span>
+                </span>
+              </section>
+            </section>
+            <section className="flex flex-col justify-between w-4/5 h-24 my-2 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
+              <span className="text-slate-900 text-3xl font-semibold">
+                Invest in XRP
+              </span>
+              <section className="flex justify-between text-sm">
+                <section>
+                  <span className="text-slate-400 mr-2">17 VOTES</span>
+                  <span className="text-slate-700">ENDS IN 23 DAYS</span>
+                </section>
+                <span className="text-slate-400">
+                  LEADING:{" "}
+                  <span className="text-slate-700 font-semibold">NO</span>
+                </span>
+              </section>
+            </section>
+            <section className="flex flex-col justify-between w-4/5 h-24 my-2 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
+              <span className="text-slate-900 text-3xl font-semibold">
+                Invest in XRP
+              </span>
+              <section className="flex justify-between text-sm">
+                <section>
+                  <span className="text-slate-400 mr-2">17 VOTES</span>
+                  <span className="text-slate-700">ENDS IN 23 DAYS</span>
+                </section>
+                <span className="text-slate-400">
+                  LEADING:{" "}
+                  <span className="text-slate-700 font-semibold">NO</span>
+                </span>
+              </section>
+            </section>
+            <section className="flex flex-col justify-between w-4/5 h-24 my-2 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
+              <span className="text-slate-900 text-3xl font-semibold">
+                Invest in XRP
+              </span>
+              <section className="flex justify-between text-sm">
+                <section>
+                  <span className="text-slate-400 mr-2">17 VOTES</span>
+                  <span className="text-slate-700">ENDS IN 23 DAYS</span>
+                </section>
+                <span className="text-slate-400">
+                  LEADING:{" "}
+                  <span className="text-slate-700 font-semibold">NO</span>
+                </span>
+              </section>
+            </section>
+          </section>
+        </section>
       </section>
     </section>
   );
