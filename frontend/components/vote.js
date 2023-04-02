@@ -149,6 +149,10 @@ export default function Vote() {
             </section>
           </section>
         </section>
+        {/* TODO
+        <section>Create proposal</section>
+        <section>Transparency</section>
+        <section>Guide</section> */}
       </section>
     </section>
   );
