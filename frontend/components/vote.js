@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useAccount } from "wagmi";
-import { AlertTriangle } from "@web3uikit/icons";
+import { AlertTriangle, Checkmark, CrossCircle } from "@web3uikit/icons";
 
 export default function Vote() {
   const { isConnected } = useAccount();
@@ -92,7 +92,18 @@ export default function Vote() {
                 Invest in AGIX
               </span>
               <section className="flex justify-between text-sm">
-                <section>
+                <section className="flex items-center">
+                  <section className="flex items-center bg-green-100 px-2 mr-2 rounded-2xl">
+                    <span>
+                      <Checkmark
+                        fontSize="13px"
+                        className="fill-green-500 mr-1"
+                      />
+                    </span>
+                    <span className="text-green-500 mr-2 font-semibold">
+                      ACTIVE
+                    </span>
+                  </section>
                   <span className="text-slate-400 mr-2">17 VOTES</span>
                   <span className="text-slate-700">ENDS IN 23 DAYS</span>
                 </section>
@@ -107,7 +118,18 @@ export default function Vote() {
                 Invest in XRP
               </span>
               <section className="flex justify-between text-sm">
-                <section>
+                <section className="flex items-center">
+                  <section className="flex items-center bg-green-100 px-2 mr-2 rounded-2xl">
+                    <span>
+                      <Checkmark
+                        fontSize="13px"
+                        className="fill-green-500 mr-1"
+                      />
+                    </span>
+                    <span className="text-green-500 mr-2 font-semibold">
+                      ACTIVE
+                    </span>
+                  </section>
                   <span className="text-slate-400 mr-2">17 VOTES</span>
                   <span className="text-slate-700">ENDS IN 23 DAYS</span>
                 </section>
@@ -122,7 +144,18 @@ export default function Vote() {
                 Invest in XRP
               </span>
               <section className="flex justify-between text-sm">
-                <section>
+                <section className="flex items-center">
+                  <section className="flex items-center bg-red-100 px-2 mr-2 rounded-2xl">
+                    <span>
+                      <CrossCircle
+                        fontSize="17px"
+                        className="fill-red-500 mr-1"
+                      />
+                    </span>
+                    <span className="text-red-500 mr-2 font-semibold">
+                      FINISHED
+                    </span>
+                  </section>
                   <span className="text-slate-400 mr-2">17 VOTES</span>
                   <span className="text-slate-700">ENDS IN 23 DAYS</span>
                 </section>
@@ -137,7 +170,18 @@ export default function Vote() {
                 Invest in XRP
               </span>
               <section className="flex justify-between text-sm">
-                <section>
+                <section className="flex items-center">
+                  <section className="flex items-center bg-red-100 px-2 mr-2 rounded-2xl">
+                    <span>
+                      <CrossCircle
+                        fontSize="17px"
+                        className="fill-red-500 mr-1"
+                      />
+                    </span>
+                    <span className="text-red-500 mr-2 font-semibold">
+                      FINISHED
+                    </span>
+                  </section>
                   <span className="text-slate-400 mr-2">17 VOTES</span>
                   <span className="text-slate-700">ENDS IN 23 DAYS</span>
                 </section>
