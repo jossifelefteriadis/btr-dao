@@ -157,7 +157,7 @@ export default function Vote() {
                     </span>
                   </section>
                   <span className="text-slate-400 mr-2">17 VOTES</span>
-                  <span className="text-slate-700">ENDS IN 23 DAYS</span>
+                  <span className="text-slate-700">ENDED 2022-02-01</span>
                 </section>
                 <span className="text-slate-400">
                   LEADING:{" "}
@@ -183,7 +183,7 @@ export default function Vote() {
                     </span>
                   </section>
                   <span className="text-slate-400 mr-2">17 VOTES</span>
-                  <span className="text-slate-700">ENDS IN 23 DAYS</span>
+                  <span className="text-slate-700">ENDED 2022-02-01</span>
                 </section>
                 <span className="text-slate-400">
                   LEADING:{" "}
