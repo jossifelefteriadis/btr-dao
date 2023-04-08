@@ -20,9 +20,11 @@ export default function Footer() {
         <p>
           <Link href="/contact">Contact</Link>
         </p>
-        {/* <p> | </p>
-          <p>Terms of Service</p>
-          <p> | </p>
+        <p> | </p>
+        <p>
+          <Link href="/termsandconditions">Terms & Conditions</Link>
+        </p>
+        {/*<p> | </p>
           <p>Privacy Policy</p> */}
       </section>
     </section>
