@@ -16,7 +16,7 @@ export default function Vote() {
   }, [isConnected]);
 
   return (
-    <section className="py-28">
+    <section className="pt-28">
       {!isLoggedIn ? (
         <section className="min-h-screen flex flex-col items-center mt-8">
           <section className="w-2/6 flex justify-between items-center">
@@ -49,10 +49,10 @@ export default function Vote() {
           </section>
         </section>
       ) : (
-        <section className="flex justify-center pb-2 px-10 border-b border-gray-500">
+        <section className="flex justify-center pb-2 px-10 bg-black border-b border-gray-500">
           <section className="w-1/3 flex content-center justify-evenly">
             <p className="cursor-pointer hover:text-pink-600 text-lg">
-              <Link href="/#">Proposals</Link>
+              <Link href="/proposal">Proposals</Link>
             </p>
             <p className="cursor-pointer hover:text-pink-600 text-lg">
               <Link href="/#">Create Proposal</Link>
@@ -60,13 +60,10 @@ export default function Vote() {
             <p className="cursor-pointer hover:text-pink-600 text-lg">
               <Link href="/#">Transparency</Link>
             </p>
-            <p className="cursor-pointer hover:text-pink-600 text-lg">
-              <Link href="/#">Guide</Link>
-            </p>
           </section>
         </section>
       )}
-      <section className="flex flex-col items-center bg-white pt-8">
+      <section className="flex flex-col items-center bg-white pt-8 pb-20">
         <section className="w-2/3">
           <section className="flex justify-evenly w-full">
             <section className="w-80 h-28 bg-waves bg-blue-900 flex flex-col justify-evenly pl-4 pb-4 border rounded-md border-gray-200 text-gray-900 shadow-lg">
