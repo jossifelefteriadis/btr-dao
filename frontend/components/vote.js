@@ -55,10 +55,7 @@ export default function Vote() {
               <Link href="/proposal">Proposals</Link>
             </p>
             <p className="cursor-pointer hover:text-pink-600 text-lg">
-              <Link href="/#">Create Proposal</Link>
-            </p>
-            <p className="cursor-pointer hover:text-pink-600 text-lg">
-              <Link href="/#">Transparency</Link>
+              <Link href="/createproposal">Create Proposal</Link>
             </p>
           </section>
         </section>
