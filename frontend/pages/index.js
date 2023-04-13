@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <section>
       <Head>
-        <title>BTR DAO</title>
+        <title>BTR INVESTMENT CLUB</title>
       </Head>
       <Main />
       <Description />
