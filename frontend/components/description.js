@@ -6,12 +6,12 @@ import DescriptionImg from "../public/assets/icons/description.png";
 export default function Description() {
   return (
     <section className="w-full p-2 flex flex-col items-center py-16">
-      <h1>A smarter DAO</h1>
+      <h1>A smarter Investment Club</h1>
       <section className="max-w-[1240px] m-auto md:grid grid-cols-2 gap-8 items-center mt-10">
         <section>
           <Image
             src={DescriptionImg}
-            alt="Dao image"
+            alt="investment club image"
             width="600"
             height="525"
           />
@@ -33,17 +33,17 @@ export default function Description() {
           </ul>
           <br />
           <p>
-            The BTR DAO has the capacity to reach new heights as an investment
-            club.
+            The BTR Investment Club has the capacity to reach new heights as an
+            investment club.
             <br />
             <br />
-            The DAO along with its treasury will be managed by the collective
-            responsibility of all DAO members, which also are members of the BTR
-            community.
+            The Investment Club along with its treasury will be managed by the
+            collective responsibility of all Investment Club members, which also
+            are members of the BTR community.
           </p>
           <p className="py-4">
-            A DAO&apos;s greatest asset is the collective intelligence of its
-            members
+            An Investment Club&apos;s greatest asset is the collective
+            intelligence of its members
           </p>
           <p>
             Thankfully the BTR community brings knowledge and exposure to many
