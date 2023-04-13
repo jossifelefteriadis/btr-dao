@@ -12,7 +12,7 @@ export default function Explainer() {
           <Image src={Proposal} alt="Proposal" width="110" height="110" />
           <p className="pt-2 text-2xl">Have an NFT to create proposals</p>
           <p className="pt-4 w-2/3 text-lg text-center">
-            Only the BTR DAO members can create proposals
+            Only the BTR Investment Club members can create proposals
           </p>
         </section>
         <section className="flex flex-col items-center pb-10">
@@ -20,7 +20,7 @@ export default function Explainer() {
           <Image src={YesVote} alt="Yes Vote" width="110" height="110" />
           <p className="pt-2 text-2xl">Have an NFT to vote on proposals</p>
           <p className="pt-4 w-2/3 text-lg text-center">
-            The BTR DAO member govern the DAOs investments
+            The BTR Investment Club members govern the Clubs investments
           </p>
         </section>
         <section className="flex flex-col items-center pb-10">
