@@ -6,7 +6,7 @@ export default function Learn() {
       <section className="max-w-[1040px] m-auto text-xl">
         <p>
           We&apos;re glad you found this section and want to learn more about
-          the BTR DAO.
+          the BTR Investment Club.
         </p>
         <br />
         <p>
@@ -37,12 +37,12 @@ export default function Learn() {
                         clip-rule="evenodd"
                       ></path>
                     </svg>
-                    What is the purpose of the BTR DAO?
+                    What is the purpose of the BTR Investment Club?
                   </h3>
                   <p className="text-gray-500 dark:text-gray-400">
-                    The purpose of the DAO is to allow members of the BTR
-                    Investment Club to make a vote on the decisions in regards
-                    to the club.
+                    The purpose of the Investment Club is to allow members of
+                    the BTR Investment Club to make a vote on the decisions in
+                    regards to the club.
                   </p>
                 </section>
                 <section className="mb-10">
@@ -59,7 +59,7 @@ export default function Learn() {
                         clip-rule="evenodd"
                       ></path>
                     </svg>
-                    How will the DAO be governed?
+                    How will the BTR Investment Club be governed?
                   </h3>
                   <p className="text-gray-500 dark:text-gray-400">
                     It will be governed by the community of the BTR investors
@@ -67,8 +67,8 @@ export default function Learn() {
                     Sparks Flames and Brando) will not be allowed to vote due
                     interests of conflict and possible manipulation. They, the
                     community, will have full control over the voting and
-                    decision-making process. Therefore making the DAO fully
-                    decentralized.
+                    decision-making process. Therefore making the Investment
+                    Club fully decentralized.
                   </p>
                 </section>
                 <section className="mb-10">
@@ -85,7 +85,8 @@ export default function Learn() {
                         clip-rule="evenodd"
                       ></path>
                     </svg>
-                    What project will the DAO targeted as investment?
+                    What project will the BTR Investment Club targeted as
+                    investment?
                   </h3>
                   <p className="text-gray-500 dark:text-gray-400">
                     The investment will consist of projects such as Gala nodes,
@@ -130,13 +131,13 @@ export default function Learn() {
                         clip-rule="evenodd"
                       ></path>
                     </svg>
-                    How will we educate our DAO community?
+                    How will we educate our BTR Investment Club community?
                   </h3>
                   <p className="text-gray-500 dark:text-gray-400">
-                    Education regarding the DAO will be done either via the BTR
-                    YouTube channel and posted in the Patreon for the members
-                    involved or via the Telegram channel via meetings with
-                    Brando and Sparks Flames.
+                    Education regarding the Investment Club will be done either
+                    via the BTR YouTube channel and posted in the Patreon for
+                    the members involved or via the Telegram channel via
+                    meetings with Brando and Sparks Flames.
                   </p>
                 </section>
               </section>
@@ -155,7 +156,7 @@ export default function Learn() {
                         clip-rule="evenodd"
                       ></path>
                     </svg>
-                    How will the DAO investors communicate?
+                    How will the BTR Investment Club investors communicate?
                   </h3>
                   <p className="text-gray-500 dark:text-gray-400">
                     All communication is to be made via the Telegram group that
@@ -223,8 +224,8 @@ export default function Learn() {
                         clip-rule="evenodd"
                       ></path>
                     </svg>
-                    How many people are committed to the DAO at this Present
-                    time?
+                    How many people are committed to the BTR Investment Club at
+                    this Present time?
                   </h3>
                   <p className="text-gray-500 dark:text-gray-400">
                     According to the SEC regulations, only 100 people may commit
@@ -246,14 +247,14 @@ export default function Learn() {
                       ></path>
                     </svg>
                     What positions do our founding partners have in the
-                    development of the DAO?
+                    development of the BTR Investment Club?
                   </h3>
                   <p className="text-gray-500 dark:text-gray-400">
-                    Jossif handles all the development such as the BTR DAO site,
-                    NFT creation, Smart Contracts, etc. Sparks Flames handles
-                    admin which includes collecting and distributing information
-                    to the members of the investment. Brando provides the vision
-                    and overlooks the full operation.
+                    Jossif handles all the development such as the BTR
+                    Investment Club site, NFT creation, Smart Contracts, etc.
+                    Sparks Flames handles admin which includes collecting and
+                    distributing information to the members of the investment.
+                    Brando provides the vision and overlooks the full operation.
                   </p>
                 </section>
               </section>
