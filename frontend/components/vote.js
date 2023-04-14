@@ -29,13 +29,14 @@ export default function Vote() {
                 </span>
               </p>
               <p>
-                FOR <span className="text-pink-600">BTR DAO</span> MEMBERS ONLY
+                FOR <span className="text-pink-600">BTR INVESTMENT CLUB</span>{" "}
+                MEMBERS ONLY
               </p>
             </section>
             <AlertTriangle fontSize="80px" className="text-red-600" />
           </section>
           <section className="flex flex-col justify-evenly items-center h-20 mt-16 text-xl tracking-wide">
-            <p>CONNECT YOUR WALLET IF YOU ARE A BTR DAO MEMBER</p>
+            <p>CONNECT YOUR WALLET IF YOU ARE A BTR INVESTMENT CLUB MEMBER</p>
             <p>
               NOT A MEMBER?{" "}
               <a
