@@ -9,7 +9,7 @@ export default function Vote() {
   const { isConnected } = useAccount();
   const provider = useProvider();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [proposal, setProposals] = useState({})
+  const [proposals, setProposals] = useState([])
 
   useEffect(() => {
     if (!isConnected) {
@@ -25,16 +25,76 @@ export default function Vote() {
     signerOrProvider: provider,
   });
 
-  const viewProposal = async() => {
-   ethers.utils.defaultAbiCoder.decode(["string"], "");
-   const proposal = await contract.btrProposals(0)
-   setProposals(proposal)
-   console.log(proposal)
+  const fetchProposalCount = async() => {
+    const numProposals = await contract.currentIndex();
+    return numProposals
   }
 
+   const fetchProposalById = async (id) => {
+     try {
+       const proposal = await contract.btrProposals(id);
+       const title = ethers.utils.defaultAbiCoder.decode(["string"], proposal.title);
+       const description = ethers.utils.defaultAbiCoder.decode(
+         ["string"],
+         proposal.proposal
+       );
+      //  if (proposal.deadline < BigNumber.from(1)) {
+      //    deadline = "First Voter Has To Start The Deadline";
+      //  } else {
+      //    deadline = new Date(parseInt(proposal.deadline.toString()) * 1000);
+      //  }
+      //  const thisAccount = await getAddress();
+      //  if (thisAccount === proposal.proposalOwner) {
+      //    areYouOwner = true;
+      //  } else {
+      //    areYouOwner = false;
+      //  }
+      //  if (proposal.proposalApproved === true) {
+      //    proposalApproved = "Yes";
+      //  } else {
+      //    proposalApproved = "No";
+      //  }
+     
+       const parsedProposal = {
+         title: String(title),
+         description: description,
+         owner: proposal.proposalOwner,
+         accepted: String(proposal.proposalAccepted),
+         validated: String(proposal.proposalAlreadyValidated),
+         executed: String(proposal.proposalExecuted),
+         yesVotes: proposal.votedYes.toNumber(),
+         noVotes: proposal.votedYes.toNumber(),
+         totalVotes: proposal.totalVotes.toNumber(),
+         deadline: new Date(
+           parseInt(proposal.proposalDeadline.toString()) * 1000
+         ).toDateString(),
+         active: new Date().getTime() > new Date(parseInt(proposal.proposalDeadline.toString()) * 1000).getTime()
+       };
+       return parsedProposal;
+     } catch (error) {
+       console.error(error);
+     }
+   };
+
+  const allProposals = async () => {
+    try {
+      const numProposals = await fetchProposalCount()
+      const proposals = [];
+      for (let i = 0; i < numProposals; i++) {
+        const proposal = await fetchProposalById(i);
+        proposals.push(proposal);
+      }
+      setProposals(proposals);
+      console.log(proposals)
+      return proposals;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-   viewProposal()
-  },[])
+   allProposals()
+  })
 
 
   return (
@@ -83,6 +143,7 @@ export default function Vote() {
           </section>
         </section>
       )}
+
       <section className="flex flex-col items-center bg-white pt-8 pb-20">
         <section className="w-2/3">
           <section className="flex justify-evenly w-full">
@@ -104,6 +165,58 @@ export default function Vote() {
             </section>
           </section>
           <section className="w-full flex flex-col items-center justify-evenly mt-6 py-2">
+            {proposals.map((proposal) => {
+               return (
+                 <section className="flex flex-col justify-between w-4/5 h-24 my-2 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
+                   <span className="text-slate-900 text-3xl font-semibold">
+                     {proposal.title}
+                   </span>
+                   <section className="flex justify-between text-sm">
+                     <section className="flex items-center">
+                       {(
+                        !proposal.active
+                       ) ? (
+                         <section className="flex items-center bg-green-100 px-2 mr-2 rounded-2xl">
+                           <span>
+                             <Checkmark
+                               fontSize="13px"
+                               className="fill-green-500 mr-1"
+                             />
+                           </span>
+                           <span className="text-green-500 mr-2 font-semibold">
+                             ACTIVE
+                           </span>
+                         </section>
+                       ) : (
+                         <section className="flex items-center bg-red-100 px-2 mr-2 rounded-2xl">
+                           <span>
+                             <CrossCircle
+                               fontSize="17px"
+                               className="fill-red-500 mr-1"
+                             />
+                           </span>
+                           <span className="text-red-500 mr-2 font-semibold">
+                             FINISHED
+                           </span>
+                         </section>
+                       )}
+                       <span className="text-slate-400 mr-2">
+                         {proposal.totalVotes} VOTES
+                       </span>
+                       <span className="text-slate-700">
+                         ENDS ON {proposal.deadline}
+                       </span>
+                     </section>
+                     <span className="text-slate-400">
+                       LEADING:{" "}
+                       <span className="text-slate-700 font-semibold">
+                         {proposal.yesVotes > proposal.noVotes ? "YES" : "NO"}
+                       </span>
+                     </span>
+                   </section>
+                 </section>
+               );
+            })}
             <section className="flex flex-col justify-between w-4/5 h-24 my-2 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
               <span className="text-slate-900 text-3xl font-semibold">
                 Invest in AGIX
