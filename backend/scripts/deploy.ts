@@ -1,18 +1,23 @@
 import { ethers } from "hardhat";
+require("dotenv").config({ path: ".env" });
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
+  const Airdrop = await ethers.getContractFactory("Airdrop");
+  const airdrop = await Airdrop.deploy();
 
-  const lockedAmount = ethers.utils.parseEther("1");
+  console.log("Airdrop deployed to:", airdrop.address);
 
-  const Lock = await ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+   const Dao = await ethers.getContractFactory("BTRDAO");
+   const dao = await Dao.deploy(
+     airdrop.address,
+     "0x4e2F3dF2865F0A865070617422BAfeDcBecac4d2",
+     "0xA38C00185dE730CEFd0480EFFc967C8565922457"
+   );
 
-  await lock.deployed();
+   console.log("Dao deployed to:", dao.address);
 
-  console.log(`Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`);
+   await airdrop.sendTierOneDAONFT();
+   await airdrop.sendTierTwoDAONFT();
 }
 
 // We recommend this pattern to be able to use async/await everywhere

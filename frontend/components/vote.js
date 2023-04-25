@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useAccount } from "wagmi";
+import { useAccount, useContract, useProvider } from "wagmi";
 import { AlertTriangle, Checkmark, CrossCircle } from "@web3uikit/icons";
+import { ADDRESS, abi } from "../constants";
+import { ethers } from "ethers";
 
 export default function Vote() {
   const { isConnected } = useAccount();
+  const provider = useProvider();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [proposal, setProposals] = useState({})
 
   useEffect(() => {
     if (!isConnected) {
@@ -14,6 +18,24 @@ export default function Vote() {
       setIsLoggedIn(true);
     }
   }, [isConnected]);
+
+  const contract = useContract({
+    address: ADDRESS,
+    abi: abi,
+    signerOrProvider: provider,
+  });
+
+  const viewProposal = async() => {
+   ethers.utils.defaultAbiCoder.decode(["string"], "");
+   const proposal = await contract.btrProposals(0)
+   setProposals(proposal)
+   console.log(proposal)
+  }
+
+  useEffect(() => {
+   viewProposal()
+  },[])
+
 
   return (
     <section className="pt-28">
@@ -187,7 +209,9 @@ export default function Vote() {
               </section>
             </section>
           </section>
+         
         </section>
+
         {/* TODO
         <section>Create proposal</section>
         <section>Transparency</section>

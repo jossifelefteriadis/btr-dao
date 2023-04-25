@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: Unlicense
-import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
 
 //Whitelisted Addresses can mint NFTs for free
 //There will be a public mint later on down the line
@@ -26,19 +26,20 @@ contract BTRDAO {
     No 
   }
 
-    address public BTRNFTAddress;
+    address public bTRNFTAddress;
     address public owner;
     address public secondOwner;
     uint public currentIndex;
 
     constructor(address _btrNFTAddress, address _owner, address _secondOwner) {
-       BTRNFTAddress = _btrNFTAddress;
+       bTRNFTAddress = _btrNFTAddress;
        owner = _owner;
        secondOwner = _secondOwner;
     }
 
     modifier doYouHoldBTRNFTS {
-        if(IERC721(BTRNFTAddress).balanceOf(msg.sender) < 1) {
+      bool hasDAONFT = (IERC1155(bTRNFTAddress).balanceOf(msg.sender, 1) > 0) || (IERC1155(bTRNFTAddress).balanceOf(msg.sender, 2) > 0);
+        if(hasDAONFT == false) {
           revert NFT_BALANCE_EMPTY();
         }
         _;
@@ -95,7 +96,7 @@ contract BTRDAO {
        BTRProposal storage selectedBTRProposal = btrProposals[index];
        bool isSenderAnOwner = (msg.sender == owner || msg.sender == secondOwner);
        bool hasDeadlinePassed = (selectedBTRProposal.proposalDeadline > block.timestamp && selectedBTRProposal.totalVotes != 100);
-       if(selectedBTRProposal.totalVotes < 15) {
+       if(selectedBTRProposal.totalVotes < 1500) {
          revert MINIMUM_OF_15_VOTES();
        } 
 
@@ -110,11 +111,13 @@ contract BTRDAO {
         if(hasDeadlinePassed) {
           revert HASNT_BEEN_30_DAYS();
         }  
-
        _;
     }
+
+    
     
     struct BTRProposal {
+      bytes title;
       bytes proposal;
       address proposalOwner;
       bool proposalAccepted;
@@ -133,13 +136,15 @@ contract BTRDAO {
     mapping(address => uint) timeToCreateAnotherProposal;
 
 
-    function createProposal(string calldata _proposal) external doYouHoldBTRNFTS canYouMakeAnotherProposal {
+    function createProposal(string calldata _title, string calldata _proposal) external doYouHoldBTRNFTS canYouMakeAnotherProposal {
       BTRProposal storage currentBTRProposal = btrProposals[currentIndex];
+      currentBTRProposal.title = abi.encode(_title);
       currentBTRProposal.proposal = abi.encode(_proposal);
       currentBTRProposal.proposalOwner = msg.sender;
       timeToCreateAnotherProposal[msg.sender] = block.timestamp + 24 hours;
       currentIndex++;
     }
+
 
     function acceptOrDenyProposal(bool _acceptProposal, uint index) external canProposalBeAccepted(index) {
        BTRProposal storage selectedBTRProposal = btrProposals[index];
@@ -155,9 +160,17 @@ contract BTRDAO {
     function voteOnProposal(Vote vote, uint index) external doYouHoldBTRNFTS haveYouVotedAlready(index) hasProposalBeenAccepted(index) isProposalStillActive(index) {
       BTRProposal storage selectedBTRProposal = btrProposals[index];
       if(vote == Vote.YES) {
-        selectedBTRProposal.votedYes++;
+        if(IERC1155(bTRNFTAddress).balanceOf(msg.sender, 1) > 0) {
+          selectedBTRProposal.votedYes += 100;
+        } else if(IERC1155(bTRNFTAddress).balanceOf(msg.sender, 2) > 0) {
+          selectedBTRProposal.votedYes += 200;
+        }
       } else {
-         selectedBTRProposal.votedNo++;
+          if(IERC1155(bTRNFTAddress).balanceOf(msg.sender, 1) > 0) {
+          selectedBTRProposal.votedNo += 100;
+        } else if(IERC1155(bTRNFTAddress).balanceOf(msg.sender, 2) > 0) {
+          selectedBTRProposal.votedNo += 200;
+        }
       }
       selectedBTRProposal.totalVotes++;
       selectedBTRProposal.votedAlready[msg.sender] = true;
@@ -168,7 +181,6 @@ contract BTRDAO {
        BTRProposal storage selectedBTRProposal = btrProposals[index];
        selectedBTRProposal.proposalExecuted = true;
     }
-
 
     function withdrawAnyFunds() external {
       require(address(this).balance > 0, "NO_BALANCE_TO_WITHDRAW");
@@ -186,3 +198,4 @@ contract BTRDAO {
     receive() external payable {}
     fallback() external payable {}
 }
+
