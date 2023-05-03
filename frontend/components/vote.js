@@ -9,7 +9,7 @@ export default function Vote() {
   const { isConnected } = useAccount();
   const provider = useProvider();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [proposals, setProposals] = useState([])
+  const [proposals, setProposals] = useState([]);
 
   useEffect(() => {
     if (!isConnected) {
@@ -25,19 +25,22 @@ export default function Vote() {
     signerOrProvider: provider,
   });
 
-  const fetchProposalCount = async() => {
+  const fetchProposalCount = async () => {
     const numProposals = await contract.currentIndex();
-    return numProposals
-  }
+    return numProposals;
+  };
 
-   const fetchProposalById = async (id) => {
-     try {
-       const proposal = await contract.btrProposals(id);
-       const title = ethers.utils.defaultAbiCoder.decode(["string"], proposal.title);
-       const description = ethers.utils.defaultAbiCoder.decode(
-         ["string"],
-         proposal.proposal
-       );
+  const fetchProposalById = async (id) => {
+    try {
+      const proposal = await contract.btrProposals(id);
+      const title = ethers.utils.defaultAbiCoder.decode(
+        ["string"],
+        proposal.title
+      );
+      const description = ethers.utils.defaultAbiCoder.decode(
+        ["string"],
+        proposal.proposal
+      );
       //  if (proposal.deadline < BigNumber.from(1)) {
       //    deadline = "First Voter Has To Start The Deadline";
       //  } else {
@@ -54,38 +57,42 @@ export default function Vote() {
       //  } else {
       //    proposalApproved = "No";
       //  }
-     
-       const parsedProposal = {
-         title: String(title),
-         description: description,
-         owner: proposal.proposalOwner,
-         accepted: String(proposal.proposalAccepted),
-         validated: String(proposal.proposalAlreadyValidated),
-         executed: String(proposal.proposalExecuted),
-         yesVotes: proposal.votedYes.toNumber(),
-         noVotes: proposal.votedYes.toNumber(),
-         totalVotes: proposal.totalVotes.toNumber(),
-         deadline: new Date(
-           parseInt(proposal.proposalDeadline.toString()) * 1000
-         ).toDateString(),
-         active: new Date().getTime() > new Date(parseInt(proposal.proposalDeadline.toString()) * 1000).getTime()
-       };
-       return parsedProposal;
-     } catch (error) {
-       console.error(error);
-     }
-   };
+
+      const parsedProposal = {
+        title: String(title),
+        description: description,
+        owner: proposal.proposalOwner,
+        accepted: String(proposal.proposalAccepted),
+        validated: String(proposal.proposalAlreadyValidated),
+        executed: String(proposal.proposalExecuted),
+        yesVotes: proposal.votedYes.toNumber(),
+        noVotes: proposal.votedYes.toNumber(),
+        totalVotes: proposal.totalVotes.toNumber(),
+        deadline: new Date(
+          parseInt(proposal.proposalDeadline.toString()) * 1000
+        ).toDateString(),
+        active:
+          new Date().getTime() >
+          new Date(
+            parseInt(proposal.proposalDeadline.toString()) * 1000
+          ).getTime(),
+      };
+      return parsedProposal;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const allProposals = async () => {
     try {
-      const numProposals = await fetchProposalCount()
+      const numProposals = await fetchProposalCount();
       const proposals = [];
       for (let i = 0; i < numProposals; i++) {
         const proposal = await fetchProposalById(i);
         proposals.push(proposal);
       }
       setProposals(proposals);
-      console.log(proposals)
+      console.log(proposals);
       return proposals;
     } catch (error) {
       console.error(error);
@@ -93,9 +100,8 @@ export default function Vote() {
   };
 
   useEffect(() => {
-   allProposals()
-  })
-
+    allProposals();
+  });
 
   return (
     <section className="pt-28">
@@ -133,7 +139,7 @@ export default function Vote() {
         </section>
       ) : (
         <section className="flex justify-center pb-2 px-10 bg-black border-b border-gray-500">
-          <section className="w-1/3 flex content-center justify-evenly">
+          <section className="w-2/3 sm:w-2/4 lg:w-1/3 flex content-center justify-evenly">
             <p className="cursor-pointer hover:text-pink-600 text-lg">
               <Link href="/proposal">Proposals</Link>
             </p>
@@ -164,60 +170,58 @@ export default function Vote() {
               <p className="text-white text-lg font-semibold">$832,000</p>
             </section>
           </section>
-          <section className="w-full flex flex-col items-center justify-evenly mt-6 py-2">
+          <section className="w-full min-h-screen flex flex-col items-center mt-6 py-2">
             {proposals.map((proposal) => {
-               return (
-                 <section className="flex flex-col justify-between w-4/5 h-24 my-2 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
-                   <span className="text-slate-900 text-3xl font-semibold">
-                     {proposal.title}
-                   </span>
-                   <section className="flex justify-between text-sm">
-                     <section className="flex items-center">
-                       {(
-                        !proposal.active
-                       ) ? (
-                         <section className="flex items-center bg-green-100 px-2 mr-2 rounded-2xl">
-                           <span>
-                             <Checkmark
-                               fontSize="13px"
-                               className="fill-green-500 mr-1"
-                             />
-                           </span>
-                           <span className="text-green-500 mr-2 font-semibold">
-                             ACTIVE
-                           </span>
-                         </section>
-                       ) : (
-                         <section className="flex items-center bg-red-100 px-2 mr-2 rounded-2xl">
-                           <span>
-                             <CrossCircle
-                               fontSize="17px"
-                               className="fill-red-500 mr-1"
-                             />
-                           </span>
-                           <span className="text-red-500 mr-2 font-semibold">
-                             FINISHED
-                           </span>
-                         </section>
-                       )}
-                       <span className="text-slate-400 mr-2">
-                         {proposal.totalVotes} VOTES
-                       </span>
-                       <span className="text-slate-700">
-                         ENDS ON {proposal.deadline}
-                       </span>
-                     </section>
-                     <span className="text-slate-400">
-                       LEADING:{" "}
-                       <span className="text-slate-700 font-semibold">
-                         {proposal.yesVotes > proposal.noVotes ? "YES" : "NO"}
-                       </span>
-                     </span>
-                   </section>
-                 </section>
-               );
+              return (
+                <section className="flex flex-col justify-between w-4/5 h-24 my-4 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
+                  <span className="text-slate-900 text-3xl font-semibold">
+                    {proposal.title}
+                  </span>
+                  <section className="flex justify-between text-sm">
+                    <section className="flex items-center">
+                      {!proposal.active ? (
+                        <section className="flex items-center bg-green-100 px-2 mr-2 rounded-2xl">
+                          <span>
+                            <Checkmark
+                              fontSize="13px"
+                              className="fill-green-500 mr-1"
+                            />
+                          </span>
+                          <span className="text-green-500 mr-2 font-semibold">
+                            ACTIVE
+                          </span>
+                        </section>
+                      ) : (
+                        <section className="flex items-center bg-red-100 px-2 mr-2 rounded-2xl">
+                          <span>
+                            <CrossCircle
+                              fontSize="17px"
+                              className="fill-red-500 mr-1"
+                            />
+                          </span>
+                          <span className="text-red-500 mr-2 font-semibold">
+                            FINISHED
+                          </span>
+                        </section>
+                      )}
+                      <span className="text-slate-400 mr-2">
+                        {proposal.totalVotes} VOTES
+                      </span>
+                      <span className="text-slate-700">
+                        ENDS ON {proposal.deadline}
+                      </span>
+                    </section>
+                    <span className="text-slate-400">
+                      LEADING:{" "}
+                      <span className="text-slate-700 font-semibold">
+                        {proposal.yesVotes > proposal.noVotes ? "YES" : "NO"}
+                      </span>
+                    </span>
+                  </section>
+                </section>
+              );
             })}
-            <section className="flex flex-col justify-between w-4/5 h-24 my-2 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
+            {/* <section className="flex flex-col justify-between w-4/5 h-24 my-2 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
               <span className="text-slate-900 text-3xl font-semibold">
                 Invest in AGIX
               </span>
@@ -320,9 +324,8 @@ export default function Vote() {
                   <span className="text-slate-700 font-semibold">NO</span>
                 </span>
               </section>
-            </section>
+            </section> */}
           </section>
-         
         </section>
 
         {/* TODO
