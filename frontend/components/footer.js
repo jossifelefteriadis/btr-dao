@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <section className="h-28 bg-neutral-100 pt-10 flex justify-center">
-      <section className="w-full sm:w-5/12 flex justify-evenly text-gray-900">
+      <section className="w-full sm:w-8/12 lg:w-5/12 flex justify-evenly text-gray-900">
         <p>
           <Link href="/">Whitepaper</Link>
         </p>
@@ -24,8 +24,6 @@ export default function Footer() {
         <p>
           <Link href="/termsandconditions">Terms & Conditions</Link>
         </p>
-        {/*<p> | </p>
-          <p>Privacy Policy</p> */}
       </section>
     </section>
   );
