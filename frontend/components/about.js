@@ -47,7 +47,6 @@ export default function About() {
         </section>
       </section>
       <VideoTestimonial />
-      {/* Add more testimonials */}
     </section>
   );
 }

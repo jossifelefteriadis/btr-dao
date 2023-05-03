@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -30,9 +30,6 @@ export default function Nav() {
               <ConnectButton />
             </li>
           </ul>
-          {/* <section onClick={handleNav} className="md:hidden mr-2">
-            <AiOutlineMenu size={25} />
-          </section> */}
         </section>
       </section>
     </section>

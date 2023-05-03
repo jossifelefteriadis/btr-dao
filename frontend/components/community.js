@@ -15,7 +15,6 @@ export default function Community() {
       <section className="max-w-[1240px] h-96 mx-auto p-2 flex flex-col justify-center items-center bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
         <h1>Join the BTR Community</h1>
       </section>
-      {/* TODO: Make links mobile responsive for smaller screen */}
       <section className="max-w-[1240px] m-auto mt-10 pb-20 md:grid grid-cols-12 gap-8">
         <Link
           href="https://www.youtube.com/c/BiggerThanRace"
