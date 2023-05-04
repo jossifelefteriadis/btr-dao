@@ -154,20 +154,22 @@ export default function Vote() {
         <section className="w-2/3">
           <section className="flex justify-evenly w-full">
             <section className="w-80 h-28 bg-waves bg-blue-900 flex flex-col justify-evenly pl-4 pb-4 border rounded-md border-gray-200 text-gray-900 shadow-lg">
-              <p className="text-gray-100 text-lg">Proposals</p>
+              <p className="text-gray-100 text-lg">Total Proposals</p>
               <p className="text-white text-lg font-semibold">
-                9 active proposals
+                19 total proposals
               </p>
             </section>
             <section className="w-80 h-28 bg-waves bg-blue-900 flex flex-col justify-evenly pl-4 pb-4 border rounded-md border-gray-200 text-gray-900 shadow-lg">
               <p className="text-gray-100 text-lg">Participation</p>
               <p className="text-white text-lg font-semibold">
-                862 votes this month
+                862 total votes
               </p>
             </section>
             <section className="w-80 h-28 bg-waves bg-blue-900 flex flex-col justify-evenly pl-4 pb-4 border rounded-md border-gray-200 text-gray-900 shadow-lg">
-              <p className="text-gray-100 text-lg">Treasury</p>
-              <p className="text-white text-lg font-semibold">$832,000</p>
+              <p className="text-gray-100 text-lg">Active Proposals</p>
+              <p className="text-white text-lg font-semibold">
+                9 active proposals
+              </p>
             </section>
           </section>
           <section className="w-full min-h-screen flex flex-col items-center mt-6 py-2">
