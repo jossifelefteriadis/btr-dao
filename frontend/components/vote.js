@@ -173,7 +173,7 @@ export default function Vote() {
           <section className="w-full min-h-screen flex flex-col items-center mt-6 py-2">
             {proposals.map((proposal) => {
               return (
-                <section className="flex flex-col justify-between w-4/5 h-24 my-4 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
+                <section className="flex flex-col justify-between w-4/5 h-24 my-4 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border cursor-pointer">
                   <span className="text-slate-900 text-3xl font-semibold">
                     {proposal.title}
                   </span>
