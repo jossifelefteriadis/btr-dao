@@ -10,7 +10,10 @@ export default function Vote() {
   const provider = useProvider();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [proposals, setProposals] = useState([]);
-
+  const [proposalCount, setProposalCount] = useState(0)
+  const [voteCount, setVoteCount] = useState(0)
+  const [activeProposals, setActiveProposals] = useState(0)
+  
   useEffect(() => {
     if (!isConnected) {
       setIsLoggedIn(false);
@@ -27,6 +30,7 @@ export default function Vote() {
 
   const fetchProposalCount = async () => {
     const numProposals = await contract.currentIndex();
+    setProposalCount(numProposals.toNumber())
     return numProposals;
   };
 
@@ -41,22 +45,6 @@ export default function Vote() {
         ["string"],
         proposal.proposal
       );
-      //  if (proposal.deadline < BigNumber.from(1)) {
-      //    deadline = "First Voter Has To Start The Deadline";
-      //  } else {
-      //    deadline = new Date(parseInt(proposal.deadline.toString()) * 1000);
-      //  }
-      //  const thisAccount = await getAddress();
-      //  if (thisAccount === proposal.proposalOwner) {
-      //    areYouOwner = true;
-      //  } else {
-      //    areYouOwner = false;
-      //  }
-      //  if (proposal.proposalApproved === true) {
-      //    proposalApproved = "Yes";
-      //  } else {
-      //    proposalApproved = "No";
-      //  }
 
       const parsedProposal = {
         title: String(title),
@@ -86,21 +74,35 @@ export default function Vote() {
   const allProposals = async () => {
     try {
       const numProposals = await fetchProposalCount();
+      let total = 0
       const proposals = [];
       for (let i = 0; i < numProposals; i++) {
         const proposal = await fetchProposalById(i);
         proposals.push(proposal);
+        if(proposal.active) total = total + 1
       }
       setProposals(proposals);
-      console.log(proposals);
+      setActiveProposals(total)
       return proposals;
     } catch (error) {
       console.error(error);
     }
   };
+   
+  const fetchTotalVotes = async() => {
+     let total = 0
+     const numProposals = await fetchProposalCount();
+      for (let i = 0; i < numProposals; i++) {
+        const proposal = await contract.btrProposals(i);
+        total = total + proposal.totalVotes.toNumber()
+      }
+   setVoteCount(total)
+  }
+
 
   useEffect(() => {
     allProposals();
+    fetchTotalVotes()
   });
 
   return (
@@ -156,19 +158,19 @@ export default function Vote() {
             <section className="w-80 h-28 bg-waves bg-blue-900 flex flex-col justify-evenly pl-4 pb-4 border rounded-md border-gray-200 text-gray-900 shadow-lg">
               <p className="text-gray-100 text-lg">Total Proposals</p>
               <p className="text-white text-lg font-semibold">
-                19 total proposals
+                {proposalCount} total proposals
               </p>
             </section>
             <section className="w-80 h-28 bg-waves bg-blue-900 flex flex-col justify-evenly pl-4 pb-4 border rounded-md border-gray-200 text-gray-900 shadow-lg">
               <p className="text-gray-100 text-lg">Participation</p>
               <p className="text-white text-lg font-semibold">
-                862 total votes
+                {voteCount} total votes
               </p>
             </section>
             <section className="w-80 h-28 bg-waves bg-blue-900 flex flex-col justify-evenly pl-4 pb-4 border rounded-md border-gray-200 text-gray-900 shadow-lg">
               <p className="text-gray-100 text-lg">Active Proposals</p>
               <p className="text-white text-lg font-semibold">
-                9 active proposals
+                {activeProposals} active proposals
               </p>
             </section>
           </section>

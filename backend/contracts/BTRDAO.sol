@@ -1,11 +1,6 @@
 //SPDX-License-Identifier: Unlicense
 import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
 
-//Whitelisted Addresses can mint NFTs for free
-//There will be a public mint later on down the line
-
-//Voting Power, How Many Times can someone create a proposal
-
 pragma solidity ^0.8.18;
 
 contract BTRDAO {
@@ -96,7 +91,7 @@ contract BTRDAO {
        BTRProposal storage selectedBTRProposal = btrProposals[index];
        bool isSenderAnOwner = (msg.sender == owner || msg.sender == secondOwner);
        bool hasDeadlinePassed = (selectedBTRProposal.proposalDeadline > block.timestamp && selectedBTRProposal.totalVotes != 100);
-       if(selectedBTRProposal.totalVotes < 1500) {
+       if(selectedBTRProposal.totalVotes < 15) {
          revert MINIMUM_OF_15_VOTES();
        } 
 
@@ -198,4 +193,3 @@ contract BTRDAO {
     receive() external payable {}
     fallback() external payable {}
 }
-
