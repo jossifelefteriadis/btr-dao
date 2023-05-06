@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { useAccount, useContract, useSigner } from "wagmi";
-import {ADDRESS, abi} from "../constants"
-import { AlertTriangle, Checkmark, CrossCircle } from "@web3uikit/icons";
+import { ADDRESS, abi } from "../constants";
+import { AlertTriangle } from "@web3uikit/icons";
 
 export default function CreateProposal() {
   const { isConnected } = useAccount();
-  const {data:signer} = useSigner()
+  const { data: signer } = useSigner();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const contract = useContract({
     address: ADDRESS,
     abi: abi,
-    signerOrProvider: signer
+    signerOrProvider: signer,
   });
-  
-  const createProposal = async() => {
-    await contract.createProposal(title, description)
-  }
+
+  const createProposal = async () => {
+    await contract.createProposal(title, description);
+  };
 
   useEffect(() => {
     if (!isConnected) {
@@ -86,7 +84,10 @@ export default function CreateProposal() {
                 placeholder="add your description here"
                 required
               />
-              <button onClick={createProposal} className="w-full p-4 bg-blue-500 hover:bg-blue-600 text-gray-100 mt-4 rounded-md">
+              <button
+                onClick={createProposal}
+                className="w-full p-4 bg-blue-500 hover:bg-blue-600 text-gray-100 mt-4 rounded-md"
+              >
                 Submit Proposal
               </button>
             </section>
