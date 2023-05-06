@@ -1,19 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { useAccount, useContract, useProvider } from "wagmi";
 import { AlertTriangle, Checkmark, CrossCircle } from "@web3uikit/icons";
-import { ADDRESS, abi } from "../constants";
 import { ethers } from "ethers";
+import { ADDRESS, abi } from "../constants";
+import ProposalContext from "./proposalContext.js";
 
 export default function Vote() {
+  const {
+    setProposalTitle,
+    setProposalDescription,
+    setProposalOwner,
+    setProposalDeadline,
+    setProposalActive,
+    setProposalTotalVotes,
+    setProposalYesVotes,
+    setProposalNoVotes,
+  } = useContext(ProposalContext);
   const { isConnected } = useAccount();
   const provider = useProvider();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [proposals, setProposals] = useState([]);
-  const [proposalCount, setProposalCount] = useState(0)
-  const [voteCount, setVoteCount] = useState(0)
-  const [activeProposals, setActiveProposals] = useState(0)
-  
+  const [proposalCount, setProposalCount] = useState(0);
+  const [voteCount, setVoteCount] = useState(0);
+  const [activeProposals, setActiveProposals] = useState(0);
+
   useEffect(() => {
     if (!isConnected) {
       setIsLoggedIn(false);
@@ -21,6 +32,26 @@ export default function Vote() {
       setIsLoggedIn(true);
     }
   }, [isConnected]);
+
+  const setProposalContext = (
+    proposalTitle,
+    proposalDescription,
+    proposalOwner,
+    proposalDeadline,
+    proposalActive,
+    proposalTotalVotes,
+    proposalYesVotes,
+    proposalNoVotes
+  ) => {
+    setProposalTitle(proposalTitle);
+    setProposalDescription(proposalDescription);
+    setProposalOwner(proposalOwner);
+    setProposalDeadline(proposalDeadline);
+    setProposalActive(proposalActive);
+    setProposalTotalVotes(proposalTotalVotes);
+    setProposalYesVotes(proposalYesVotes);
+    setProposalNoVotes(proposalNoVotes);
+  };
 
   const contract = useContract({
     address: ADDRESS,
@@ -30,7 +61,7 @@ export default function Vote() {
 
   const fetchProposalCount = async () => {
     const numProposals = await contract.currentIndex();
-    setProposalCount(numProposals.toNumber())
+    setProposalCount(numProposals.toNumber());
     return numProposals;
   };
 
@@ -74,35 +105,34 @@ export default function Vote() {
   const allProposals = async () => {
     try {
       const numProposals = await fetchProposalCount();
-      let total = 0
+      let total = 0;
       const proposals = [];
       for (let i = 0; i < numProposals; i++) {
         const proposal = await fetchProposalById(i);
         proposals.push(proposal);
-        if(proposal.active) total = total + 1
+        if (proposal.active) total = total + 1;
       }
       setProposals(proposals);
-      setActiveProposals(total)
+      setActiveProposals(total);
       return proposals;
     } catch (error) {
       console.error(error);
     }
   };
-   
-  const fetchTotalVotes = async() => {
-     let total = 0
-     const numProposals = await fetchProposalCount();
-      for (let i = 0; i < numProposals; i++) {
-        const proposal = await contract.btrProposals(i);
-        total = total + proposal.totalVotes.toNumber()
-      }
-   setVoteCount(total)
-  }
 
+  const fetchTotalVotes = async () => {
+    let total = 0;
+    const numProposals = await fetchProposalCount();
+    for (let i = 0; i < numProposals; i++) {
+      const proposal = await contract.btrProposals(i);
+      total = total + proposal.totalVotes.toNumber();
+    }
+    setVoteCount(total);
+  };
 
   useEffect(() => {
     allProposals();
-    fetchTotalVotes()
+    fetchTotalVotes();
   });
 
   return (
@@ -143,7 +173,9 @@ export default function Vote() {
         <section className="flex justify-center pb-2 px-10 bg-black border-b border-gray-500">
           <section className="w-2/3 sm:w-2/4 lg:w-1/3 flex content-center justify-evenly">
             <p className="cursor-pointer hover:text-pink-600 text-lg">
-              <Link href="/proposal">Proposals</Link>
+              <Link href="/vote" className="text-pink-600">
+                Proposals
+              </Link>
             </p>
             <p className="cursor-pointer hover:text-pink-600 text-lg">
               <Link href="/createproposal">Create Proposal</Link>
@@ -175,167 +207,78 @@ export default function Vote() {
             </section>
           </section>
           <section className="w-full min-h-screen flex flex-col items-center mt-6 py-2">
-            {proposals.map((proposal) => {
+            {proposals.map((proposal, i) => {
               return (
-                <section className="flex flex-col justify-between w-4/5 h-24 my-4 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border cursor-pointer">
-                  <span className="text-slate-900 text-3xl font-semibold">
-                    {proposal.title}
-                  </span>
-                  <section className="flex justify-between text-sm">
-                    <section className="flex items-center">
-                      {!proposal.active ? (
-                        <section className="flex items-center bg-green-100 px-2 mr-2 rounded-2xl">
-                          <span>
-                            <Checkmark
-                              fontSize="13px"
-                              className="fill-green-500 mr-1"
-                            />
-                          </span>
-                          <span className="text-green-500 mr-2 font-semibold">
-                            ACTIVE
-                          </span>
-                        </section>
-                      ) : (
-                        <section className="flex items-center bg-red-100 px-2 mr-2 rounded-2xl">
-                          <span>
-                            <CrossCircle
-                              fontSize="17px"
-                              className="fill-red-500 mr-1"
-                            />
-                          </span>
-                          <span className="text-red-500 mr-2 font-semibold">
-                            FINISHED
-                          </span>
-                        </section>
-                      )}
-                      <span className="text-slate-400 mr-2">
-                        {proposal.totalVotes} VOTES
-                      </span>
-                      <span className="text-slate-700">
-                        ENDS ON {proposal.deadline}
+                <section
+                  className="flex flex-col justify-between w-4/5 h-24 my-4 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border cursor-pointer"
+                  key={i}
+                  onClick={() =>
+                    setProposalContext(
+                      proposal.title,
+                      proposal.description,
+                      proposal.owner,
+                      proposal.deadline,
+                      proposal.active,
+                      proposal.totalVotes,
+                      proposal.yesVotes,
+                      proposal.noVotes
+                    )
+                  }
+                >
+                  <Link
+                    href={`/proposal/${proposal.title}`}
+                    className="h-full flex flex-col justify-between"
+                  >
+                    <span className="text-slate-900 text-3xl font-semibold">
+                      {proposal.title}
+                    </span>
+                    <section className="flex justify-between text-sm">
+                      <section className="flex items-center">
+                        {!proposal.active ? (
+                          <section className="flex items-center bg-green-100 px-2 mr-2 rounded-2xl">
+                            <span>
+                              <Checkmark
+                                fontSize="13px"
+                                className="fill-green-500 mr-1"
+                              />
+                            </span>
+                            <span className="text-green-500 mr-2 font-semibold">
+                              ACTIVE
+                            </span>
+                          </section>
+                        ) : (
+                          <section className="flex items-center bg-red-100 px-2 mr-2 rounded-2xl">
+                            <span>
+                              <CrossCircle
+                                fontSize="17px"
+                                className="fill-red-500 mr-1"
+                              />
+                            </span>
+                            <span className="text-red-500 mr-2 font-semibold">
+                              FINISHED
+                            </span>
+                          </section>
+                        )}
+                        <span className="text-slate-400 mr-2">
+                          {proposal.totalVotes} VOTES
+                        </span>
+                        <span className="text-slate-700">
+                          ENDS ON {proposal.deadline}
+                        </span>
+                      </section>
+                      <span className="text-slate-400">
+                        LEADING:{" "}
+                        <span className="text-slate-700 font-semibold">
+                          {proposal.yesVotes > proposal.noVotes ? "YES" : "NO"}
+                        </span>
                       </span>
                     </section>
-                    <span className="text-slate-400">
-                      LEADING:{" "}
-                      <span className="text-slate-700 font-semibold">
-                        {proposal.yesVotes > proposal.noVotes ? "YES" : "NO"}
-                      </span>
-                    </span>
-                  </section>
+                  </Link>
                 </section>
               );
             })}
-            {/* <section className="flex flex-col justify-between w-4/5 h-24 my-2 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
-              <span className="text-slate-900 text-3xl font-semibold">
-                Invest in AGIX
-              </span>
-              <section className="flex justify-between text-sm">
-                <section className="flex items-center">
-                  <section className="flex items-center bg-green-100 px-2 mr-2 rounded-2xl">
-                    <span>
-                      <Checkmark
-                        fontSize="13px"
-                        className="fill-green-500 mr-1"
-                      />
-                    </span>
-                    <span className="text-green-500 mr-2 font-semibold">
-                      ACTIVE
-                    </span>
-                  </section>
-                  <span className="text-slate-400 mr-2">17 VOTES</span>
-                  <span className="text-slate-700">ENDS IN 23 DAYS</span>
-                </section>
-                <span className="text-slate-400">
-                  LEADING:{" "}
-                  <span className="text-slate-700 font-semibold">YES</span>
-                </span>
-              </section>
-            </section>
-            <section className="flex flex-col justify-between w-4/5 h-24 my-2 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
-              <span className="text-slate-900 text-3xl font-semibold">
-                Invest in XRP
-              </span>
-              <section className="flex justify-between text-sm">
-                <section className="flex items-center">
-                  <section className="flex items-center bg-green-100 px-2 mr-2 rounded-2xl">
-                    <span>
-                      <Checkmark
-                        fontSize="13px"
-                        className="fill-green-500 mr-1"
-                      />
-                    </span>
-                    <span className="text-green-500 mr-2 font-semibold">
-                      ACTIVE
-                    </span>
-                  </section>
-                  <span className="text-slate-400 mr-2">17 VOTES</span>
-                  <span className="text-slate-700">ENDS IN 23 DAYS</span>
-                </section>
-                <span className="text-slate-400">
-                  LEADING:{" "}
-                  <span className="text-slate-700 font-semibold">NO</span>
-                </span>
-              </section>
-            </section>
-            <section className="flex flex-col justify-between w-4/5 h-24 my-2 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
-              <span className="text-slate-900 text-3xl font-semibold">
-                Invest in XRP
-              </span>
-              <section className="flex justify-between text-sm">
-                <section className="flex items-center">
-                  <section className="flex items-center bg-red-100 px-2 mr-2 rounded-2xl">
-                    <span>
-                      <CrossCircle
-                        fontSize="17px"
-                        className="fill-red-500 mr-1"
-                      />
-                    </span>
-                    <span className="text-red-500 mr-2 font-semibold">
-                      FINISHED
-                    </span>
-                  </section>
-                  <span className="text-slate-400 mr-2">17 VOTES</span>
-                  <span className="text-slate-700">ENDED 2022-02-01</span>
-                </section>
-                <span className="text-slate-400">
-                  LEADING:{" "}
-                  <span className="text-slate-700 font-semibold">NO</span>
-                </span>
-              </section>
-            </section>
-            <section className="flex flex-col justify-between w-4/5 h-24 my-2 px-4 py-2 rounded-md shadow-md shadow-gray-200 hover:shadow-lg hover:shadow-gray-300 hover:border-gray-100 hover:border">
-              <span className="text-slate-900 text-3xl font-semibold">
-                Invest in XRP
-              </span>
-              <section className="flex justify-between text-sm">
-                <section className="flex items-center">
-                  <section className="flex items-center bg-red-100 px-2 mr-2 rounded-2xl">
-                    <span>
-                      <CrossCircle
-                        fontSize="17px"
-                        className="fill-red-500 mr-1"
-                      />
-                    </span>
-                    <span className="text-red-500 mr-2 font-semibold">
-                      FINISHED
-                    </span>
-                  </section>
-                  <span className="text-slate-400 mr-2">17 VOTES</span>
-                  <span className="text-slate-700">ENDED 2022-02-01</span>
-                </section>
-                <span className="text-slate-400">
-                  LEADING:{" "}
-                  <span className="text-slate-700 font-semibold">NO</span>
-                </span>
-              </section>
-            </section> */}
           </section>
         </section>
-
-        {/* TODO
-        <section>Create proposal</section>
-        <section>Transparency</section>
-        <section>Guide</section> */}
       </section>
     </section>
   );
