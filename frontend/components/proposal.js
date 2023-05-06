@@ -1,11 +1,25 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import React, { useContext, useEffect, useState } from "react";
 import { useAccount } from "wagmi";
-import { AlertTriangle, Checkmark, CrossCircle } from "@web3uikit/icons";
+import { AlertTriangle } from "@web3uikit/icons";
+import ProposalContext from "./proposalContext.js";
 
 export default function Proposal() {
+  const {
+    proposalTitle,
+    proposalDescription,
+    proposalOwner,
+    proposalDeadline,
+    proposalActive,
+    proposalTotalVotes,
+    proposalYesVotes,
+    proposalNoVotes,
+  } = useContext(ProposalContext);
   const { isConnected } = useAccount();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const yesPercentage = Math.round(
+    (proposalYesVotes / proposalTotalVotes) * 100
+  );
+  const noPercentage = Math.round((proposalNoVotes / proposalTotalVotes) * 100);
 
   useEffect(() => {
     if (!isConnected) {
@@ -52,38 +66,45 @@ export default function Proposal() {
       ) : (
         <section className="min-h-screen flex justify-center mt-28 px-10">
           <section className="w-4/6 flex flex-col items-center">
-            <h2 className="mb-8">Should BTR Investment Club Take Over?</h2>
-            <section className="w-2/3">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum. 1
-            </section>
+            <h2 className="mb-8">{proposalTitle}</h2>
+            <section className="w-2/3">{proposalDescription}</section>
           </section>
           <section>
             <section className="w-60 h-60 flex flex-col items-center p-4 pb-20 text-sm border border-gray-600 rounded-xl uppercase">
               <section className="w-full flex justify-between py-2">
                 <span>CREATED BY: </span>
-                <span>0x123456789</span>
+                <span>{proposalOwner.slice(0, 8)}</span>
               </section>
-              <section className="w-full flex justify-between py-2">
+              {/* <section className="w-full flex justify-between py-2">
                 <span>CREATED AT: </span>
-                <span>2023-01-01</span>
-              </section>
+                <span>{}</span>
+              </section> */}
               <section className="w-full flex justify-between py-2">
                 <span>ENDS AT: </span>
-                <span>2023-01-31</span>
+                <span>
+                  {new Date(proposalDeadline).toLocaleDateString("sv-SE")}
+                </span>
               </section>
               <section className="w-full flex justify-between py-2">
                 <span>AMOUNT OF VOTES: </span>
-                <span>16</span>
-                {/* Add progress bar with colors green/red */}
+                <span>{proposalTotalVotes}</span>
+              </section>
+              <section className="w-full mt-2 border-2 rounded">
+                {proposalTotalVotes > 1 ? (
+                  <section className="flex">
+                    <section className="w-full h-4 bg-green-400"></section>
+                    <section className="w-full h-4 bg-red-400"></section>
+                  </section>
+                ) : (
+                  <section className="flex">
+                    <section
+                      className={`w-[${yesPercentage}%] h-4 bg-blue-400`}
+                    ></section>
+                    <section
+                      className={`w-[${noPercentage}%] h-4 bg-red-400`}
+                    ></section>
+                  </section>
+                )}
               </section>
             </section>
           </section>
