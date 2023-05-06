@@ -1,6 +1,8 @@
 import "../styles/globals.css";
-
 import "@rainbow-me/rainbowkit/styles.css";
+import { useState } from "react";
+
+import ProposalContext from "../components/proposalContext.js";
 
 import {
   getDefaultWallets,
@@ -30,13 +32,43 @@ const wagmiClient = createClient({
 });
 
 function MyApp({ Component, pageProps }) {
+  const [proposalTitle, setProposalTitle] = useState("");
+  const [proposalDescription, setProposalDescription] = useState("");
+  const [proposalOwner, setProposalOwner] = useState("");
+  const [proposalDeadline, setProposalDeadline] = useState("");
+  const [proposalActive, setProposalActive] = useState("");
+  const [proposalTotalVotes, setProposalTotalVotes] = useState("");
+  const [proposalYesVotes, setProposalYesVotes] = useState("");
+  const [proposalNoVotes, setProposalNoVotes] = useState("");
+
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider theme={darkTheme()} chains={chains}>
-        <Nav />
-        <Component {...pageProps} />
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <ProposalContext.Provider
+      value={{
+        proposalTitle,
+        setProposalTitle,
+        proposalDescription,
+        setProposalDescription,
+        proposalOwner,
+        setProposalOwner,
+        proposalDeadline,
+        setProposalDeadline,
+        proposalActive,
+        setProposalActive,
+        proposalTotalVotes,
+        setProposalTotalVotes,
+        proposalYesVotes,
+        setProposalYesVotes,
+        proposalNoVotes,
+        setProposalNoVotes,
+      }}
+    >
+      <WagmiConfig client={wagmiClient}>
+        <RainbowKitProvider theme={darkTheme()} chains={chains}>
+          <Nav />
+          <Component {...pageProps} />
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </ProposalContext.Provider>
   );
 }
 
