@@ -70,7 +70,7 @@ export default function Proposal() {
             <section className="w-2/3">{proposalDescription}</section>
           </section>
           <section>
-            <section className="w-60 h-60 flex flex-col items-center p-4 pb-20 text-sm border border-gray-600 rounded-xl uppercase">
+            <section className="w-60 h-[17rem] flex flex-col items-center p-4 pb-20 text-sm border border-gray-600 rounded-xl uppercase">
               <section className="w-full flex justify-between py-2">
                 <span>CREATED BY: </span>
                 <span>{proposalOwner.slice(0, 8)}</span>
@@ -107,8 +107,13 @@ export default function Proposal() {
                 )}
               </section>
               {proposalActive && (
-                <section>
-                  <section></section>
+                <section className="w-full flex flex-col mt-6">
+                  <button className="h-8 text-lg bg-green-600 tracking-wider mb-2 cursor-pointer rounded">
+                    YES
+                  </button>
+                  <button className="h-8 text-lg bg-red-600 tracking-wider cursor-pointer rounded">
+                    NO
+                  </button>
                 </section>
               )}
             </section>
