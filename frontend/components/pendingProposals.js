@@ -145,15 +145,14 @@ export default function PendingProposals() {
                   <span className="text-slate-900 text-xl">
                     {proposal.description}
                   </span>
-                  <span className="text-slate-900 text-xl">dsafa</span>
                   <span className="text-slate-900 mt-4">
                     Creator: {proposal.owner}
                   </span>
                   <section className="w-full flex flex-col mt-6">
-                    <button className="h-8 text-lg text-white bg-green-600 tracking-wider mb-2 cursor-pointer rounded">
+                    <button className="h-12 text-lg text-white bg-green-600 tracking-wider mb-2 cursor-pointer rounded">
                       APPROVE
                     </button>
-                    <button className="h-8 text-lg text-white bg-red-600 tracking-wider cursor-pointer rounded">
+                    <button className="h-12 text-lg text-white bg-red-600 tracking-wider cursor-pointer rounded">
                       DENY
                     </button>
                   </section>
