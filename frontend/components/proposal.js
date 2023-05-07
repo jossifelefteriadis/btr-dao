@@ -90,7 +90,7 @@ export default function Proposal() {
                 <span>{proposalTotalVotes}</span>
               </section>
               <section className="w-full mt-2 border-2 rounded">
-                {proposalTotalVotes > 1 ? (
+                {proposalTotalVotes < 1 ? (
                   <section className="flex">
                     <section className="w-full h-4 bg-green-400"></section>
                     <section className="w-full h-4 bg-red-400"></section>
@@ -106,6 +106,11 @@ export default function Proposal() {
                   </section>
                 )}
               </section>
+              {proposalActive && (
+                <section>
+                  <section></section>
+                </section>
+              )}
             </section>
           </section>
         </section>
