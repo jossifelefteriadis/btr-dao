@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import { useAccount, useContract, useProvider } from "wagmi";
+import { useAccount, useContract, useProvider, useSigner } from "wagmi";
 import { AlertTriangle, Checkmark, CrossCircle } from "@web3uikit/icons";
 import { ethers } from "ethers";
 import { ADDRESS, abi } from "../constants";
@@ -22,10 +22,12 @@ export default function PendingProposals() {
     }
   }, [isConnected]);
 
+  const {data:signer} = useSigner()
+
   const contract = useContract({
     address: ADDRESS,
     abi: abi,
-    signerOrProvider: provider,
+    signerOrProvider: signer || provider,
   });
 
   const fetchProposalCount = async () => {
@@ -89,8 +91,23 @@ export default function PendingProposals() {
     }
   };
 
+  const fetchTotalVotes = async () => {
+    let total = 0;
+    const numProposals = await fetchProposalCount();
+    for (let i = 0; i < numProposals; i++) {
+      const proposal = await contract.btrProposals(i);
+      total = total + proposal.totalVotes.toNumber();
+    }
+    setVoteCount(total);
+  };
+
+  const approveOrDeny = async (choice, proposalIndex) => {
+    await contract.acceptOrDenyProposal(choice, proposalIndex);
+  };
+
   useEffect(() => {
     allProposals();
+    fetchTotalVotes();
   });
 
   return (
@@ -149,10 +166,16 @@ export default function PendingProposals() {
                     Creator: {proposal.owner}
                   </span>
                   <section className="w-full flex flex-col mt-6">
-                    <button className="h-12 text-lg text-white bg-green-600 tracking-wider mb-2 cursor-pointer rounded">
+                    <button
+                      onClick={() => approveOrDeny(true, i)}
+                      className="h-12 text-lg text-white bg-green-600 tracking-wider mb-2 cursor-pointer rounded"
+                    >
                       APPROVE
                     </button>
-                    <button className="h-12 text-lg text-white bg-red-600 tracking-wider cursor-pointer rounded">
+                    <button
+                      onClick={() => approveOrDeny(false, i)}
+                      className="h-12 text-lg text-white bg-red-600 tracking-wider cursor-pointer rounded"
+                    >
                       DENY
                     </button>
                   </section>

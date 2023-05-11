@@ -16,6 +16,7 @@ export default function Vote() {
     setProposalTotalVotes,
     setProposalYesVotes,
     setProposalNoVotes,
+    setProposalIndex
   } = useContext(ProposalContext);
   const { isConnected } = useAccount();
   const provider = useProvider();
@@ -41,7 +42,8 @@ export default function Vote() {
     proposalActive,
     proposalTotalVotes,
     proposalYesVotes,
-    proposalNoVotes
+    proposalNoVotes,
+    proposalIndex
   ) => {
     setProposalTitle(proposalTitle);
     setProposalDescription(proposalDescription);
@@ -51,6 +53,7 @@ export default function Vote() {
     setProposalTotalVotes(proposalTotalVotes);
     setProposalYesVotes(proposalYesVotes);
     setProposalNoVotes(proposalNoVotes);
+    setProposalIndex(proposalIndex);
   };
 
   const contract = useContract({
@@ -76,7 +79,7 @@ export default function Vote() {
         ["string"],
         proposal.proposal
       );
-
+      //only show if accepted
       const parsedProposal = {
         title: String(title),
         description: description,
@@ -96,6 +99,7 @@ export default function Vote() {
             parseInt(proposal.proposalDeadline.toString()) * 1000
           ).getTime(),
       };
+      console.log(parsedProposal)
       return parsedProposal;
     } catch (error) {
       console.error(error);
@@ -218,10 +222,11 @@ export default function Vote() {
                       proposal.description,
                       proposal.owner,
                       proposal.deadline,
-                      proposal.active,
+                      !proposal.active,
                       proposal.totalVotes,
                       proposal.yesVotes,
-                      proposal.noVotes
+                      proposal.noVotes,
+                      i
                     )
                   }
                 >

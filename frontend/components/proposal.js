@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useAccount } from "wagmi";
+import { useAccount, useSigner, useProvider, useContract } from "wagmi";
 import { AlertTriangle } from "@web3uikit/icons";
 import ProposalContext from "./proposalContext.js";
+import {ADDRESS, abi} from "../constants"
 
 export default function Proposal() {
   const {
@@ -13,13 +14,26 @@ export default function Proposal() {
     proposalTotalVotes,
     proposalYesVotes,
     proposalNoVotes,
+    proposalIndex
   } = useContext(ProposalContext);
   const { isConnected } = useAccount();
+  const {data:signer} = useSigner()
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const yesPercentage = Math.round(
     (proposalYesVotes / proposalTotalVotes) * 100
   );
   const noPercentage = Math.round((proposalNoVotes / proposalTotalVotes) * 100);
+
+  const contract = useContract({
+    address: ADDRESS,
+    abi: abi,
+    signerOrProvider: signer,
+  });
+
+  
+  const vote = async(choice) => {
+    await contract.voteOnProposal(choice, proposalIndex)
+  }
 
   useEffect(() => {
     if (!isConnected) {
@@ -108,10 +122,16 @@ export default function Proposal() {
               </section>
               {proposalActive && (
                 <section className="w-full flex flex-col mt-6">
-                  <button className="h-8 text-lg bg-green-600 tracking-wider mb-2 cursor-pointer rounded">
+                  <button
+                    onClick={() => vote(0)}
+                    className="h-8 text-lg bg-green-600 tracking-wider mb-2 cursor-pointer rounded"
+                  >
                     YES
                   </button>
-                  <button className="h-8 text-lg bg-red-600 tracking-wider cursor-pointer rounded">
+                  <button
+                    onClick={() => vote(1)}
+                    className="h-8 text-lg bg-red-600 tracking-wider cursor-pointer rounded"
+                  >
                     NO
                   </button>
                 </section>
