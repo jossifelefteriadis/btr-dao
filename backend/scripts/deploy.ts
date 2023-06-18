@@ -7,6 +7,7 @@ async function main() {
 
   console.log("Airdrop deployed to:", airdrop.address);
 
+
    const Dao = await ethers.getContractFactory("BTRDAO");
    const dao = await Dao.deploy(
      airdrop.address,
